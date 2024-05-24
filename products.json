@@ -1,0 +1,896 @@
+[
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7481/00967481/norm/00967481.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Брест-Ли­тов­ск» Фин­ский, 45%, 200 г",
+    "price": "3,79 р.4,59 р.",
+    "link": "https://edostavka.by/product/967481"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5383/00855383/norm/00855383.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Брест-Ли­тов­ск» Фин­ский, 45%, 150 г",
+    "price": "3,19 р.3,89 р.",
+    "link": "https://edostavka.by/product/855383"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1773/00981773/norm/00981773.n_1.png.webp?s=250x250",
+    "title": "Айран «Твой день» 0.9%, 1 л",
+    "price": "2,79 р.",
+    "link": "https://edostavka.by/product/981773"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5772/01975772/norm/01975772.n_1.png.webp?s=250x250",
+    "title": "Сыр плав­ле­ный слад­кий «Это вкус­но» с на­пол­ни­те­лем ка­ра­мель, 40%, 150 г",
+    "price": "2,79 р.",
+    "link": "https://edostavka.by/product/1975772"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5465/02015465/norm/02015465.n_1.png.webp?s=250x250",
+    "title": "Мо­лоч­ный кок­тейль «Топ» Ка­ра­мель­ный раф, кофе и со­ле­ная ка­ра­мель, 1%, 450 г",
+    "price": "2,29 р.",
+    "link": "https://edostavka.by/product/2015465"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5467/02015467/norm/02015467.n_1.png.webp?s=250x250",
+    "title": "Мо­лоч­ный кок­тейль «Топ» кофе и латте, 1%, 450 г",
+    "price": "2,29 р.",
+    "link": "https://edostavka.by/product/2015467"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7241/01977241/norm/01977241.n_1.png.webp?s=250x250",
+    "title": "Мо­лоч­ный кок­тейль «Топ» со вкусом чер­ни­ки, 2%, 450 г",
+    "price": "2,29 р.",
+    "link": "https://edostavka.by/product/1977241"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5283/00505283/norm/00505283.n_1.png.webp?s=250x250",
+    "title": "Кис­ло­мо­лоч­ный на­пи­ток «И­му­не­ле» малина, 100 г",
+    "price": "0,99 р.1,35 р.",
+    "link": "https://edostavka.by/product/505283"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0370/01440370/norm/01440370.n_1.png.webp?s=250x250",
+    "title": "Сыр плав­ле­ный «Pesto» со спе­ци­я­ми Peasant, 30%, 1 кг",
+    "price": "31,15 р./кг",
+    "link": "https://edostavka.by/product/1440370"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7330/01437330/norm/01437330.n_1.png.webp?s=250x250",
+    "title": "Сыр «Верх­не­двин­ский мас­ло­сыр­за­вод» Мол­дав­ский особый, 40%, 1 кг",
+    "price": "19,25 р./кг",
+    "link": "https://edostavka.by/product/1437330"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3717/02013717/norm/02013717.n_1.png.webp?s=250x250",
+    "title": "Кефир с на­пол­ни­те­лем «Ба­буш­ки­на крын­ка» зе­ле­ный лук с чес­ноч­ком, 2.5%, 430 г",
+    "price": "1,69 р.",
+    "link": "https://edostavka.by/product/2013717"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6713/01496713/norm/01496713.n_1.png.webp?s=250x250",
+    "title": "Про­дукт кис­ло­мо­лоч­ный «Ай­ран» 1%, 1000 мл",
+    "price": "5,99 р.",
+    "link": "https://edostavka.by/product/1496713"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0073/00950073/norm/00950073.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Басни о сыре» Су­лу­гу­ни, 40%, 200 г",
+    "price": "3,99 р.4,90 р.",
+    "link": "https://edostavka.by/product/950073"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7507/01837507/norm/01837507.n_1.png.webp?s=250x250",
+    "title": "Биой­о­гурт «Ак­ти­Био» с чер­ни­кой, зла­ка­ми и льня­ны­ми се­ме­на­ми, 3%, 130 г",
+    "price": "1,59 р.1,83 р.",
+    "link": "https://edostavka.by/product/1837507"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7535/01837535/norm/01837535.n_1.png.webp?s=250x250",
+    "title": "Биой­о­гурт «Ак­ти­Био» яблоко-клуб­ни­ка-чер­ни­ка, без сахара 1,5%, 260 г",
+    "price": "2,59 р.3,12 р.",
+    "link": "https://edostavka.by/product/1837535"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7536/01837536/norm/01837536.n_1.png.webp?s=250x250",
+    "title": "Биой­о­гурт «Ак­ти­Био» яблоко-персик без сахара 1,5%, 260 г",
+    "price": "2,59 р.3,12 р.",
+    "link": "https://edostavka.by/product/1837536"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7508/01837508/norm/01837508.n_1.png.webp?s=250x250",
+    "title": "Биой­о­гурт «Ак­ти­Био» с вишней 2,9%, 130 г",
+    "price": "1,59 р.1,83 р.",
+    "link": "https://edostavka.by/product/1837508"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7506/01837506/norm/01837506.n_1.png.webp?s=250x250",
+    "title": "Биой­о­гурт «Ак­ти­Био» яблоко-вишня-финик, без сахара 1,5%, 260 г",
+    "price": "2,59 р.3,12 р.",
+    "link": "https://edostavka.by/product/1837506"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2267/01972267/norm/01972267.n_1.png.webp?s=250x250",
+    "title": "Крем со вкусом сме­та­ны «VEG`S Family» на основе ко­ко­со­во­го масла, 170 г",
+    "price": "4,79 р.5,39 р.",
+    "link": "https://edostavka.by/product/1972267"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1920/01191920/norm/01191920.n_1.png.webp?s=250x250",
+    "title": "Йогурт пи­тье­вой «Бел­лак­т» дет­ский, яблоко-малина, 2.6%, 210 г",
+    "price": "1,27 р.",
+    "link": "https://edostavka.by/product/1191920"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1309/01531309/norm/01531309.n_1.png.webp?s=250x250",
+    "title": "Йогурт пи­тье­вой «Бел­лак­т» с би­фи­до­бак­те­ри­я­ми, груша-банан, 2,6%,210 г",
+    "price": "1,27 р.",
+    "link": "https://edostavka.by/product/1531309"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3060/00603060/norm/00603060.n_1.png.webp?s=250x250",
+    "title": "Кок­тейль «Не­по­се­да» ба­на­но­вый с мо­ло­ком, 200 мл",
+    "price": "1,49 р.",
+    "link": "https://edostavka.by/product/603060"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1131/01811131/norm/01811131.n_1.png.webp?s=250x250",
+    "title": "Кок­тейль «Не­по­се­да» муль­ти­фрук­то­вый со слив­ка­ми, 200 мл",
+    "price": "1,49 р.",
+    "link": "https://edostavka.by/product/1811131"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3062/00603062/norm/00603062.n_1.png.webp?s=250x250",
+    "title": "Кок­тель «Не­по­се­да» клуб­нич­но-ба­на­но­вый  со слив­ка­ми, 200 мл",
+    "price": "1,49 р.",
+    "link": "https://edostavka.by/product/603062"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3064/00603064/norm/00603064.n_1.png.webp?s=250x250",
+    "title": "Кок­тейль «Не­по­се­да» яб­лоч­ный с мо­ло­ком, 200 мл",
+    "price": "1,49 р.",
+    "link": "https://edostavka.by/product/603064"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9665/01989665/norm/01989665.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Caseificio da Stefano» Olivetto, 60%, 1 кг",
+    "price": "75,99 р./кг 86,99 р.",
+    "link": "https://edostavka.by/product/1989665"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9666/01989666/norm/01989666.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Caseificio da Stefano» Pepeneretto, 60%, 1 кг",
+    "price": "75,99 р./кг",
+    "link": "https://edostavka.by/product/1989666"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5207/02015207/norm/02015207.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Soletto» чер­ни­ка в гла­зу­ри, со вкусом йо­гур­та, 75 г",
+    "price": "3,30 р.",
+    "link": "https://edostavka.by/product/2015207"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5073/00035073/norm/00035073.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Ар­шан­скiя зна­ход­кi» С1",
+    "price": "2,99 р.",
+    "link": "https://edostavka.by/product/35073"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3292/01233292/norm/01233292.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Ко­брин­ски­е» С1",
+    "price": "4,10 р.",
+    "link": "https://edostavka.by/product/1233292"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1770/02011770/norm/02011770.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Ар­шан­скiя зна­ход­кi» йо­до­се­ле­но­со­дер­жа­щие С1, 10 шт",
+    "price": "3,91 р.",
+    "link": "https://edostavka.by/product/2011770"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5618/00315618/norm/00315618.n_1.png.webp?s=250x250",
+    "title": "Молоко дет­ское «Депи» сте­ри­ли­зо­ван­ное, 3.2 %",
+    "price": "0,81 р.",
+    "link": "https://edostavka.by/product/315618"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2282/00032282/norm/00032282.n_1.png.webp?s=250x250",
+    "title": "Кефир «Депи» 3.2%, 250 г",
+    "price": "0,67 р.",
+    "link": "https://edostavka.by/product/32282"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0642/00440642/norm/00440642.n_1.png.webp?s=250x250",
+    "title": "Молоко «Са­вуш­кин» уль­тра­па­сте­ри­зо­ван­ное, 3.1%",
+    "price": "2,59 р.3,07 р.",
+    "link": "https://edostavka.by/product/440642"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7280/00927280/norm/00927280.n_1.png.webp?s=250x250",
+    "title": "Творог «Ля­хо­ви­чо­к» 9%, 200 г",
+    "price": "1,79 р.2,16 р.",
+    "link": "https://edostavka.by/product/927280"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1587/01791587/norm/01791587.n_1.png.webp?s=250x250",
+    "title": "Масло слад­ко­с­ли­воч­ное «Бел­лак­т» несо­ле­ное, 83.5%, 160 г",
+    "price": "3,79 р.4,26 р.",
+    "link": "https://edostavka.by/product/1791587"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6254/00196254/norm/00196254.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мишу» с ва­ни­ли­ном, 26%, 50 г",
+    "price": "1,07 р.",
+    "link": "https://edostavka.by/product/196254"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5481/00285481/norm/00285481.n_1.png.webp?s=250x250",
+    "title": "Молоко дет­ское «Депи» сте­ри­ли­зо­ван­ное, 3.2%",
+    "price": "0,72 р.",
+    "link": "https://edostavka.by/product/285481"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0448/00900448/norm/00900448.n_1.png.webp?s=250x250",
+    "title": "Молоко «Milkavita» Latte Barista, уль­тра­па­сте­ри­зо­ван­ное, 3.2%",
+    "price": "2,78 р.",
+    "link": "https://edostavka.by/product/900448"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0888/00380888/norm/00380888.n_1.png.webp?s=250x250",
+    "title": "Молоко сгу­щен­ное «Глу­бо­ко­е» с са­ха­ром, 8.5%, 380 г",
+    "price": "3,10 р.",
+    "link": "https://edostavka.by/product/380888"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1086/00011086/norm/00011086.n_1.png.webp?s=250x250",
+    "title": "Молоко «Мо­лоч­ный мир» сте­ри­ли­зо­ван­ное, 1.5%",
+    "price": "1,95 р.2,35 р.",
+    "link": "https://edostavka.by/product/11086"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1624/01731624/norm/01731624.n_1.png.webp?s=250x250",
+    "title": "Молоко уль­тра­па­сте­ри­зо­ван­ное «Ясь Бе­ло­ус» 2.5%",
+    "price": "2,46 р.",
+    "link": "https://edostavka.by/product/1731624"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0680/00710680/norm/00710680.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Юкки» плом­бир клас­си­че­ский на слив­ках, 75 г",
+    "price": "1,19 р.1,77 р.",
+    "link": "https://edostavka.by/product/710680"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5376/00515376/norm/00515376.n_1.png.webp?s=250x250",
+    "title": "Творог «Бел­лак­т» 6%, 100 г",
+    "price": "0,83 р.",
+    "link": "https://edostavka.by/product/515376"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8877/00208877/norm/00208877.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Soletto» фи­сташ­ки и мар­ци­пан, 75 г",
+    "price": "1,19 р.1,33 р.",
+    "link": "https://edostavka.by/product/208877"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3062/01003062/norm/01003062.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мо­лоч­ная стра­на» ваниль, 23%, 45 г",
+    "price": "0,88 р.",
+    "link": "https://edostavka.by/product/1003062"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5629/01695629/norm/01695629.n_1.png.webp?s=250x250",
+    "title": "Молоко «Ясь Бе­ло­ус» уль­тра­па­сте­ри­зо­ван­ное, 3.2%",
+    "price": "2,62 р.",
+    "link": "https://edostavka.by/product/1695629"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3949/01353949/norm/01353949.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Мо­ло­дец­ки­е» Д1",
+    "price": "4,01 р.",
+    "link": "https://edostavka.by/product/1353949"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7000/01357000/norm/01357000.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Брест-Ли­тов­ск» 20%, 380 г",
+    "price": "3,10 р.",
+    "link": "https://edostavka.by/product/1357000"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1302/00561302/norm/00561302.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Soletto» слад­кая малина, 75 г",
+    "price": "1,19 р.1,33 р.",
+    "link": "https://edostavka.by/product/561302"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9234/00499234/norm/00499234.n_1.png.webp?s=250x250",
+    "title": "Молоко «Milkavita» Premium, уль­тра­па­сте­ри­зо­ван­ное, 1.5 %",
+    "price": "2,09 р.",
+    "link": "https://edostavka.by/product/499234"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2200/00932200/norm/00932200.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Ля­хо­ви­чо­к» 15%, 350 г",
+    "price": "2,19 р.2,60 р.",
+    "link": "https://edostavka.by/product/932200"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6999/01356999/norm/01356999.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Брест-Ли­тов­ск» 15%, 380 г",
+    "price": "2,67 р.",
+    "link": "https://edostavka.by/product/1356999"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8642/00528642/norm/00528642.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Ба­буш­ки­на крын­ка» Сли­воч­ный особый, 50%, 1 кг",
+    "price": "20,36 р./кг",
+    "link": "https://edostavka.by/product/528642"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1670/00151670/norm/00151670.n_1.png.webp?s=250x250",
+    "title": "Молоко «Мо­лоч­ный мир» сте­ри­ли­зо­ван­ное, 3.2%",
+    "price": "2,67 р.",
+    "link": "https://edostavka.by/product/151670"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6769/01246769/norm/01246769.n_1.png.webp?s=250x250",
+    "title": "Кефир «Брест-Ли­тов­ск» 3.2%, 950 г",
+    "price": "2,16 р.",
+    "link": "https://edostavka.by/product/1246769"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7614/00497614/norm/00497614.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мишу» с какао, 20%, 50 г",
+    "price": "0,96 р.",
+    "link": "https://edostavka.by/product/497614"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1753/01521753/norm/01521753.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Мин­ская марка» 18%, 400 г",
+    "price": "2,86 р.",
+    "link": "https://edostavka.by/product/1521753"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2641/00722641/norm/00722641.n_1.png.webp?s=250x250",
+    "title": "Кефир «Сла­вян­ские тра­ди­ци­и» 2,5%, 900 г",
+    "price": "1,74 р.",
+    "link": "https://edostavka.by/product/722641"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7685/00307685/norm/00307685.n_1.png.webp?s=250x250",
+    "title": "Молоко «Сла­вян­ские тра­ди­ци­и» сте­ри­ли­зо­ван­ное, 2.5%",
+    "price": "2,47 р.",
+    "link": "https://edostavka.by/product/307685"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1303/00441303/norm/00441303.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «УП Мин­ский хла­до­ком­би­нат №2» Каштан, 80 г",
+    "price": "1,91 р.",
+    "link": "https://edostavka.by/product/441303"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0920/00030920/norm/00030920.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «28 ко­пе­ек» Плом­бир клас­си­че­ский, эскимо, 70 г",
+    "price": "1,49 р.1,74 р.",
+    "link": "https://edostavka.by/product/30920"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9943/00879943/norm/00879943.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Бел­лак­т» дет­ский, с пре­био­ти­ком, 3.2%, 100 г",
+    "price": "0,53 р.0,60 р.",
+    "link": "https://edostavka.by/product/879943"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4597/01164597/norm/01164597.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Бел­лак­т» дет­ский, яблоко, персик и банан, 3%, 100 г",
+    "price": "0,59 р.0,68 р.",
+    "link": "https://edostavka.by/product/1164597"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9823/00699823/norm/00699823.n_1.png.webp?s=250x250",
+    "title": "Творог «Бел­лак­т» зер­не­ный, 5%, 180 г",
+    "price": "1,49 р.1,79 р.",
+    "link": "https://edostavka.by/product/699823"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5484/00935484/norm/00935484.n_1.png.webp?s=250x250",
+    "title": "Творог «Ля­хо­ви­чо­к» 5%, 200 г",
+    "price": "2,01 р.",
+    "link": "https://edostavka.by/product/935484"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8988/00338988/norm/00338988.n_1.png.webp?s=250x250",
+    "title": "Молоко «Брест-Ли­тов­ск» уль­тра­па­сте­ри­зо­ван­ное, 2.8%",
+    "price": "2,53 р.",
+    "link": "https://edostavka.by/product/338988"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2907/01922907/norm/01922907.n_1.png.webp?s=250x250",
+    "title": "Кефир «Бел­лак­т» для дет­ско­го пи­та­ния,  обо­га­щен­ный би­фи­до­бак­те­ри­я­ми, 3,3%, 207 г",
+    "price": "0,71 р.",
+    "link": "https://edostavka.by/product/1922907"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1845/00981845/norm/00981845.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Са­вуш­кин» Ко­ров­ка, 23%, 40 г",
+    "price": "0,75 р.0,91 р.",
+    "link": "https://edostavka.by/product/981845"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2730/01632730/norm/01632730.n_1.png.webp?s=250x250",
+    "title": "Творог «Бел­лак­т» 5%, 180 г",
+    "price": "1,61 р.",
+    "link": "https://edostavka.by/product/1632730"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3309/00193309/norm/00193309.n_1.png.webp?s=250x250",
+    "title": "Молоко «Сла­вян­ские тра­ди­ци­и» сте­ри­ли­зо­ван­ное, 3.2%",
+    "price": "2,78 р.",
+    "link": "https://edostavka.by/product/193309"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4049/00654049/norm/00654049.n_1.png.webp?s=250x250",
+    "title": "Йогурт гре­че­ский «Teos» 2%, 250 г",
+    "price": "2,24 р.",
+    "link": "https://edostavka.by/product/654049"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1724/00391724/norm/00391724.n_1.png.webp?s=250x250",
+    "title": "Тво­рож­ный десерт «Чудо» тво­ро­жок взби­тый, вишня-че­реш­ня, 4%, 100 г",
+    "price": "1,19 р.1,36 р.",
+    "link": "https://edostavka.by/product/391724"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3700/00673700/norm/00673700.n_1.png.webp?s=250x250",
+    "title": "Творог «Complimilk» 6%, 200г",
+    "price": "1,65 р.1,89 р.",
+    "link": "https://edostavka.by/product/673700"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8715/00428715/norm/00428715.n_1.png.webp?s=250x250",
+    "title": "Молоко «Здра­вуш­ка» От­бор­ное, па­сте­ри­зо­ван­ное, 3.4%-6%",
+    "price": "2,51 р.",
+    "link": "https://edostavka.by/product/428715"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6779/00596779/norm/00596779.n_1.png.webp?s=250x250",
+    "title": "Йогурт гре­че­ский «Teos» 2%, 140 г",
+    "price": "1,40 р.",
+    "link": "https://edostavka.by/product/596779"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1202/01851202/norm/01851202.n_1.png.webp?s=250x250",
+    "title": "Масло слад­ко­с­ли­воч­ное «Здра­вуш­ка» несо­ле­ное, 82.5%, 180 г",
+    "price": "4,74 р.",
+    "link": "https://edostavka.by/product/1851202"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6037/01006037/norm/01006037.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мо­лоч­ная стра­на» Кар­тош­ка, 18%, 45 г",
+    "price": "0,78 р.",
+    "link": "https://edostavka.by/product/1006037"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5738/00785738/norm/00785738.n_1.png.webp?s=250x250",
+    "title": "Творог «Са­вуш­кин» мягкий, 5%, 200 г",
+    "price": "1,46 р.",
+    "link": "https://edostavka.by/product/785738"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2916/00712916/norm/00712916.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Юкки» плом­бир шо­ко­лад­ный на слив­ках, 75 г",
+    "price": "1,19 р.1,77 р.",
+    "link": "https://edostavka.by/product/712916"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0327/01000327/norm/01000327.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мо­лоч­ная стра­на» чиз­кейк, 18%, 45 г",
+    "price": "0,78 р.",
+    "link": "https://edostavka.by/product/1000327"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7001/01357001/norm/01357001.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Брест-Ли­тов­ск» 25%, 380 г",
+    "price": "3,69 р.",
+    "link": "https://edostavka.by/product/1357001"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0639/00440639/norm/00440639.n_1.png.webp?s=250x250",
+    "title": "Молоко «Са­вуш­кин» уль­тра­па­сте­ри­зо­ван­ное, 1.5%",
+    "price": "2,19 р.2,62 р.",
+    "link": "https://edostavka.by/product/440639"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2098/00802098/norm/00802098.n_1.png.webp?s=250x250",
+    "title": "Молоко «Ро­га­чевъ» Вкус­ное, па­сте­ри­зо­ван­ное, 1.5%",
+    "price": "1,74 р.",
+    "link": "https://edostavka.by/product/802098"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7009/01357009/norm/01357009.n_1.png.webp?s=250x250",
+    "title": "Молоко «Мо­лоч­ный го­сти­не­ц» уль­тра­па­сте­ри­зо­ван­ное, 2,8%, 930 мл",
+    "price": "1,99 р.2,27 р.",
+    "link": "https://edostavka.by/product/1357009"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2667/00612667/norm/00612667.n_1.png.webp?s=250x250",
+    "title": "Сливки «Мо­лоч­ный го­сти­не­ц» сте­ри­ли­зо­ван­ные, 20%, 200 г",
+    "price": "2,56 р.",
+    "link": "https://edostavka.by/product/612667"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0784/01840784/norm/01840784.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Yogurtime» Гре­че­ский Olimp, 2%, 230 г",
+    "price": "1,69 р.",
+    "link": "https://edostavka.by/product/1840784"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7763/01367763/norm/01367763.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Мо­ло­дец­ки­е» ДО",
+    "price": "4,37 р.",
+    "link": "https://edostavka.by/product/1367763"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8028/01328028/norm/01328028.n_1.png.webp?s=250x250",
+    "title": "Молоко па­сте­ри­зо­ван­ное «Вкус­но­е» 2.6%",
+    "price": "2,17 р.",
+    "link": "https://edostavka.by/product/1328028"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3793/01943793/norm/01943793.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Мо­ло­дец­кие Люкс» ДО, 9 шт",
+    "price": "3,90 р.",
+    "link": "https://edostavka.by/product/1943793"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7160/00647160/norm/00647160.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Мин­ская марка» 15%, 400 г",
+    "price": "2,36 р.",
+    "link": "https://edostavka.by/product/647160"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8805/01868805/norm/01868805.n_1.png.webp?s=250x250",
+    "title": "Молоко без­лак­тоз­ное «Депи» сте­ри­ли­зо­ван­ное, 3.2 % 250 мл",
+    "price": "0,91 р.",
+    "link": "https://edostavka.by/product/1868805"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2331/00002331/norm/00002331.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мо­лоч­ная стра­на» с пе­че­ньем, сгу­щен­ка, 40 г",
+    "price": "0,76 р.",
+    "link": "https://edostavka.by/product/2331"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8653/01948653/norm/01948653.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Каш­тан» ка­пу­чи­но, 80 г",
+    "price": "1,91 р.",
+    "link": "https://edostavka.by/product/1948653"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5767/01745767/norm/01745767.n_1.png.webp?s=250x250",
+    "title": "Тво­рож­ный десерт «Са­вуш­кин» 3.5 % с ку­соч­ка­ми шо­ко­ла­да,120 г",
+    "price": "1,25 р.1,54 р.",
+    "link": "https://edostavka.by/product/1745767"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1894/01191894/norm/01191894.n_1.png.webp?s=250x250",
+    "title": "Йогурт пи­тье­вой «Бел­лак­т» дет­ский, лесная ягода, 2.6%, 210 г",
+    "price": "1,27 р.",
+    "link": "https://edostavka.by/product/1191894"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0609/00990609/norm/00990609.n_1.png.webp?s=250x250",
+    "title": "Молоко пи­тье­вое «#Можно» без­лак­тоз­ное, 3.2%, 0.93 л",
+    "price": "2,69 р.",
+    "link": "https://edostavka.by/product/990609"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6635/00236635/norm/00236635.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Де­ре­вен­ское яйцо» С0, 10 шт",
+    "price": "3,42 р.",
+    "link": "https://edostavka.by/product/236635"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7351/00837351/norm/00837351.n_1.png.webp?s=250x250",
+    "title": "Молоко «Здра­вуш­ка» па­сте­ри­зо­ван­ное, 3.2%",
+    "price": "2,38 р.",
+    "link": "https://edostavka.by/product/837351"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8121/01408121/norm/01408121.n_1.png.webp?s=250x250",
+    "title": "Молоко «Све­жие но­во­сти» от­бор­ное уль­тра­па­сте­ри­зо­ван­ное, 3.5-4%, 1 л",
+    "price": "2,99 р.",
+    "link": "https://edostavka.by/product/1408121"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1669/00151669/norm/00151669.n_1.png.webp?s=250x250",
+    "title": "Молоко «Мо­лоч­ный мир» сте­ри­ли­зо­ван­ное, 2,5%",
+    "price": "2,54 р.",
+    "link": "https://edostavka.by/product/151669"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6731/00926731/norm/00926731.n_1.png.webp?s=250x250",
+    "title": "Кефир «Са­вуш­кин» с про­био­ти­ком и лак­ту­ло­зой, 1.5%, 415 г",
+    "price": "1,06 р.",
+    "link": "https://edostavka.by/product/926731"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9701/00149701/norm/00149701.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «Топ» клуб­ни­ка-ваниль, 70 г",
+    "price": "1,05 р.1,41 р.",
+    "link": "https://edostavka.by/product/149701"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1983/00761983/norm/00761983.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Брест-Ли­тов­ск» Легкий, 35%, 200 г",
+    "price": "4,59 р.",
+    "link": "https://edostavka.by/product/761983"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5112/00675112/norm/00675112.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Ба­буш­ки­на крын­ка» какао-ваниль, 23%, 45 г",
+    "price": "0,90 р.",
+    "link": "https://edostavka.by/product/675112"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6237/01346237/norm/01346237.n_1.png.webp?s=250x250",
+    "title": "Молоко пи­тье­вое па­сте­ри­зо­ван­ное «Бел­лак­т» 2,6%, 1 л",
+    "price": "1,83 р.",
+    "link": "https://edostavka.by/product/1346237"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8944/00978944/norm/00978944.n_1.png.webp?s=250x250",
+    "title": "Сливки «Milkavita» Latte Barista, уль­тра­па­сте­ри­зо­ван­ные, 10%, 500 г",
+    "price": "3,85 р.",
+    "link": "https://edostavka.by/product/978944"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8480/00168480/norm/00168480.n_1.png.webp?s=250x250",
+    "title": "Сливки «Мо­лоч­ный го­сти­не­ц» па­сте­ри­зо­ван­ные, 10%, 200 г",
+    "price": "1,75 р.",
+    "link": "https://edostavka.by/product/168480"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6222/01656222/norm/01656222.n_1.png.webp?s=250x250",
+    "title": "Творог «Бел­лак­т»  1%, 180 г",
+    "price": "1,30 р.",
+    "link": "https://edostavka.by/product/1656222"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9209/00849209/norm/00849209.n_1.png.webp?s=250x250",
+    "title": "Йогурт гре­че­ский «Teos» 5%, 250 г",
+    "price": "2,46 р.",
+    "link": "https://edostavka.by/product/849209"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8879/00338879/norm/00338879.n_1.png.webp?s=250x250",
+    "title": "Тво­рож­ный десерт «Са­вуш­кин» чиз­кейк, 3.5%, 120 г",
+    "price": "1,19 р.1,41 р.",
+    "link": "https://edostavka.by/product/338879"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5144/00265144/norm/00265144.n_1.png.webp?s=250x250",
+    "title": "Кефир «Са­вуш­кин» 1.5%, 950 г",
+    "price": "1,89 р.",
+    "link": "https://edostavka.by/product/265144"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6365/01386365/norm/01386365.n_1.png.webp?s=250x250",
+    "title": "Молоко «Ба­буш­ки­на крын­ка» уль­тра­па­сте­ри­зо­ван­ное, 6%",
+    "price": "3,52 р.",
+    "link": "https://edostavka.by/product/1386365"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0559/01160559/norm/01160559.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Са­вуш­кин» кокос и мин­даль, 20%, 40 г",
+    "price": "0,75 р.0,91 р.",
+    "link": "https://edostavka.by/product/1160559"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1460/01801460/norm/01801460.n_1.png.webp?s=250x250",
+    "title": "Молоко пи­тье­вое па­сте­ри­зо­ван­ное «Бел­лак­т», 1,8%",
+    "price": "1,57 р.",
+    "link": "https://edostavka.by/product/1801460"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5720/00955720/norm/00955720.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Ля­хо­ви­чо­к» 20%, 400 г",
+    "price": "3,01 р.",
+    "link": "https://edostavka.by/product/955720"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1889/01191889/norm/01191889.n_1.png.webp?s=250x250",
+    "title": "Йогурт пи­тье­вой «Бел­лак­т» дет­ский, клуб­ни­ка и банан, 2.6%, 210 г",
+    "price": "1,27 р.",
+    "link": "https://edostavka.by/product/1191889"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7416/00667416/norm/00667416.n_1.png.webp?s=250x250",
+    "title": "Молоко «#Можно» без­лак­тоз­ное, сте­ри­ли­зо­ван­ное, 3.2%",
+    "price": "3,33 р.",
+    "link": "https://edostavka.by/product/667416"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1555/00671555/norm/00671555.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Са­вуш­кин» персик-манго, 2%, 120 г",
+    "price": "0,88 р.",
+    "link": "https://edostavka.by/product/671555"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4766/01174766/norm/01174766.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Бел­лак­т» дет­ский, чер­ни­ка, зем­ля­ни­ка, еже­ви­ка, 3%, 100 г",
+    "price": "0,74 р.",
+    "link": "https://edostavka.by/product/1174766"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4238/00154238/norm/00154238.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «20 ко­пе­ек» плом­бир шо­ко­лад­ный, 70 г",
+    "price": "1,39 р.1,63 р.",
+    "link": "https://edostavka.by/product/154238"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/0584/01330584/norm/01330584.n_1.png.webp?s=250x250",
+    "title": "Йогурт пи­тье­вой «Teos» Active, на­ту­раль­ный, 2%, 260 г",
+    "price": "1,72 р.",
+    "link": "https://edostavka.by/product/1330584"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6819/01126819/norm/01126819.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Мо­лоч­ный мир» 10%, 450 г",
+    "price": "1,96 р.",
+    "link": "https://edostavka.by/product/1126819"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8534/00408534/norm/00408534.n_1.png.webp?s=250x250",
+    "title": "Творог «Са­вуш­кин» 101 зерно + сливки, зер­не­ный, 5%,130 г",
+    "price": "1,27 р.",
+    "link": "https://edostavka.by/product/408534"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3312/00703312/norm/00703312.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Брест-Ли­тов­ск» 20%, 180 г",
+    "price": "1,62 р.",
+    "link": "https://edostavka.by/product/703312"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/7400/00747400/norm/00747400.n_1.png.webp?s=250x250",
+    "title": "Тво­рож­ный десерт «Чудо» тво­ро­жок взби­тый, малина-еже­ви­ка, 4.2%, 100 г",
+    "price": "1,19 р.1,36 р.",
+    "link": "https://edostavka.by/product/747400"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2521/01032521/norm/01032521.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Брест-Ли­тов­ск» Ма­а­сдам, 45%, 130 г",
+    "price": "3,89 р.",
+    "link": "https://edostavka.by/product/1032521"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9720/00209720/norm/00209720.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Да­нис­си­мо» с хру­стя­щи­ми ша­ри­ка­ми в шо­ко­ла­де 6,9%, 105 г",
+    "price": "1,99 р.",
+    "link": "https://edostavka.by/product/209720"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5997/00775997/norm/00775997.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Су­пер­Кид» ваниль-кон­фе­ты, 2%, 103 г",
+    "price": "1,89 р.",
+    "link": "https://edostavka.by/product/775997"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/3599/00183599/norm/00183599.n_1.png.webp?s=250x250",
+    "title": "Кефир «Са­вуш­кин» 2.5%, 950 г",
+    "price": "2,03 р.",
+    "link": "https://edostavka.by/product/183599"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2041/00162041/norm/00162041.n_1.png.webp?s=250x250",
+    "title": "Молоко «Брест-Ли­тов­ск» уль­тра­па­сте­ри­зо­ван­ное, 3.6%",
+    "price": "2,67 р.",
+    "link": "https://edostavka.by/product/162041"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4260/00764260/norm/00764260.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Бел­лак­т» дет­ский, малина и зем­ля­ни­ка, 3%, 100 г",
+    "price": "0,74 р.",
+    "link": "https://edostavka.by/product/764260"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2610/01792610/norm/01792610.n_1.png.webp?s=250x250",
+    "title": "Сме­та­на «Ав­тор­ский ре­цеп­т» 30%, 350 г",
+    "price": "3,49 р.4,36 р.",
+    "link": "https://edostavka.by/product/1792610"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1518/01351518/norm/01351518.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Стары Менск» с какао и аро­ма­том ванили, 23%, 40 г",
+    "price": "0,70 р.",
+    "link": "https://edostavka.by/product/1351518"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9299/00619299/norm/00619299.n_1.png.webp?s=250x250",
+    "title": "Сырок тво­рож­ный гла­зи­ро­ван­ный «Мо­лоч­ная стра­на» ваниль, 5%, 45 г",
+    "price": "0,78 р.",
+    "link": "https://edostavka.by/product/619299"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9199/00849199/norm/00849199.n_1.png.webp?s=250x250",
+    "title": "Сыр тво­рож­ный «SVEZA» сли­воч­ный, 60%, 150 г",
+    "price": "2,75 р.3,27 р.",
+    "link": "https://edostavka.by/product/849199"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8067/00138067/norm/00138067.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Мо­ло­дец­ки­е», с се­ле­ном, С2",
+    "price": "3,20 р.",
+    "link": "https://edostavka.by/product/138067"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9625/01649625/norm/01649625.n_1.png.webp?s=250x250",
+    "title": "Яйца ку­ри­ные «Зо­ло­ты­е» С2",
+    "price": "3,13 р.",
+    "link": "https://edostavka.by/product/1649625"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/8102/01878102/norm/01878102.n_1.png.webp?s=250x250",
+    "title": "Творог «Мо­лоч­ные горки» без­лак­тоз­ный, 5%, 180 г",
+    "price": "1,76 р.",
+    "link": "https://edostavka.by/product/1878102"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4030/01854030/norm/01854030.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное сли­воч­ное «Ба­буш­ки­на крын­ка» аромат ванили, 8%, 70 г",
+    "price": "1,10 р.",
+    "link": "https://edostavka.by/product/1854030"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1831/00461831/norm/00461831.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «УП Мин­ский хла­до­ком­би­нат №2» Эврика, с изюмом, 80 г",
+    "price": "1,54 р.",
+    "link": "https://edostavka.by/product/461831"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/1571/01801571/norm/01801571.n_1.png.webp?s=250x250",
+    "title": "Масло слад­ко­с­ли­воч­ное «#Можно» без­лак­тоз­ное, 82,5%, 180 г",
+    "price": "4,35 р.5,06 р.",
+    "link": "https://edostavka.by/product/1801571"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5446/00495446/norm/00495446.n_1.png.webp?s=250x250",
+    "title": "Творог «Мо­лоч­ная стра­на» До­маш­ний, зер­не­ный, 4%, 500 г",
+    "price": "5,05 р.",
+    "link": "https://edostavka.by/product/495446"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9700/00879700/norm/00879700.n_1.png.webp?s=250x250",
+    "title": "Сыр по­лутвер­дый «Тиль­зит­ский» 45%, 200 г",
+    "price": "3,59 р.4,79 р.",
+    "link": "https://edostavka.by/product/879700"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/2973/00562973/norm/00562973.n_1.png.webp?s=250x250",
+    "title": "Фрук­то­вый лед «УП Мин­ский хла­до­ком­би­нат №2» плом­бир с аро­ма­том ванили, 70 г",
+    "price": "1,07 р.",
+    "link": "https://edostavka.by/product/562973"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/4047/00654047/norm/00654047.n_1.png.webp?s=250x250",
+    "title": "Йогурт гре­че­ский «Teos» злаки с клет­чат­кой льна, 2%, 140 г",
+    "price": "1,56 р.",
+    "link": "https://edostavka.by/product/654047"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/5368/00685368/norm/00685368.n_1.png.webp?s=250x250",
+    "title": "Мо­ро­же­ное «УП Мин­ский хла­до­ком­би­нат №2» Ва­ве­рач­ка, ваниль и арахис, 80 г",
+    "price": "1,54 р.",
+    "link": "https://edostavka.by/product/685368"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/9327/00929327/norm/00929327.n_1.png.webp?s=250x250",
+    "title": "Йогурт гре­че­ский «Teos» манго-чиа, 2%, 140 г",
+    "price": "1,56 р.",
+    "link": "https://edostavka.by/product/929327"
+  },
+  {
+    "image": "https://cdn.ime.by/UserFiles/images/catalog/Goods/6784/00466784/norm/00466784.n_1.png.webp?s=250x250",
+    "title": "Йогурт «Са­вуш­кин» киви и кры­жов­ник, 2%, 120 г",
+    "price": "1,00 р.",
+    "link": "https://edostavka.by/product/466784"
+  }
+]
