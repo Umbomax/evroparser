@@ -21,6 +21,9 @@ app.get('/api/products', async (req, res) => {
 
     try {
         const connection = await connectDB();
+        console.log('search:', `%${search}%`);
+console.log('limit:', parseInt(limit));
+console.log('offset:', parseInt(offset));
 
         const [products] = await connection.execute(`
             SELECT p.id, p.title, p.image, p.link, pr.price, pr.date
