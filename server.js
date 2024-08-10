@@ -17,13 +17,12 @@ const connectDB = async () => {
 // API для получения списка товаров с фильтрацией, пагинацией и поиском
 app.get('/api/products', async (req, res) => {
     const { search = '', page = 1, limit = 15 } = req.query;
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * parseInt(limit, 10);
+    const searchValue = search.trim() === '' ? '%' : `%${search}%`;
 
     try {
         const connection = await connectDB();
-        console.log('search:', `%${search}%`);
-console.log('limit:', parseInt(limit));
-console.log('offset:', parseInt(offset));
+        console.log({ searchValue, limit: parseInt(limit, 10), offset: parseInt(offset, 10) });
 
         const [products] = await connection.execute(`
             SELECT p.id, p.title, p.image, p.link, pr.price, pr.date
@@ -31,13 +30,13 @@ console.log('offset:', parseInt(offset));
             LEFT JOIN prices pr ON p.id = pr.product_id
             WHERE p.title LIKE ? 
             ORDER BY pr.date DESC
-            LIMIT ? OFFSET ?`, [`%${search}%`, parseInt(limit), parseInt(offset)]);
+            LIMIT ? OFFSET ?`, [searchValue, parseInt(limit, 10), parseInt(offset, 10)]);
 
         // Получение общего количества товаров для пагинации
         const [total] = await connection.execute(`
             SELECT COUNT(*) as total 
             FROM products 
-            WHERE title LIKE ?`, [`%${search}%`]);
+            WHERE title LIKE ?`, [searchValue]);
 
         await connection.end();
 
