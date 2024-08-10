@@ -21,7 +21,7 @@ const App = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('/api/products', {
+            const response = await axios.get('https://pacific-commitment-production.up.railway.app/api/products', {
                 params: { search, page, limit }
             });
             setProducts(response.data.products);
@@ -33,7 +33,7 @@ const App = () => {
 
     const fetchPriceData = async (productId) => {
         try {
-            const response = await axios.get(`/api/products/${productId}/prices`);
+            const response = await axios.get(`https://pacific-commitment-production.up.railway.app/api/products/${productId}/prices`);
             setPriceData(response.data);
         } catch (error) {
             console.error('Ошибка при получении данных о ценах:', error);
