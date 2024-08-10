@@ -9,7 +9,10 @@ async function fetchProductData() {
     // Подключаемся к базе данных MySQL
     const connection = await mysql.createConnection(process.env.MYSQL_URL);
 
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     let allProducts = [];
 
