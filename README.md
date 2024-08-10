@@ -1,2 +1,0 @@
-# evroparser
-parser e-dostavka

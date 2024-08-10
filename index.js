@@ -1,9 +1,14 @@
 const puppeteer = require('puppeteer');
+const mysql = require('mysql2/promise');
 const fs = require('fs');
 
 async function fetchProductData() {
     const baseUrl = 'https://edostavka.by/category/5194?page=';
     const totalPages = 1;
+
+    // Подключаемся к базе данных MySQL
+    const connection = await mysql.createConnection(process.env.MYSQL_URL);
+
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     let allProducts = [];
@@ -15,39 +20,34 @@ async function fetchProductData() {
 
             // Извлекаем данные
             const products = await page.evaluate(() => {
-                // Находим блок, содержащий products_products
                 const productContainer = document.querySelector('[class*="products_products"]');
                 if (!productContainer) return [];
 
-                // Извлекаем элементы, содержащие adult-wrapper_adult
                 const productElements = productContainer.querySelectorAll('[class*="adult-wrapper_adult"]');
                 const productData = [];
 
                 productElements.forEach(product => {
-                    // Изображение
                     const pictureElement = product.querySelector('[class*="card-image_adult"] picture');
                     const sourceElement = pictureElement ? pictureElement.querySelector('source') : null;
                     const imageSrc = sourceElement ? sourceElement.srcset.split(' ')[0] : null;
 
-                    // Название
                     const titleElement = product.querySelector('[class*="vertical_information"] a');
                     const title = titleElement ? titleElement.textContent.trim() : null;
 
-                    // Цена
                     const priceElement = product.querySelector('[class*="vertical_information"] [class*="price_price"] span');
-                    const price = priceElement ? priceElement.textContent.trim() : null;
+                    const price = priceElement ? priceElement.textContent.trim().replace(' р.', '').replace(',', '.') : null;
 
-                    // Ссылка на товар
                     const linkElement = product.querySelector('[class*="card-image_link"]');
                     const link = linkElement ? linkElement.href : null;
 
-                    // Добавляем объект с данными продукта в массив
-                    productData.push({
-                        image: imageSrc,
-                        title: title,
-                        price: price,
-                        link: link
-                    });
+                    if (title && price && link) {
+                        productData.push({
+                            image: imageSrc,
+                            title: title,
+                            price: parseFloat(price),
+                            link: link
+                        });
+                    }
                 });
 
                 return productData;
@@ -56,13 +56,34 @@ async function fetchProductData() {
             allProducts = allProducts.concat(products);
         }
 
-        // Сохраняем данные в JSON файл
-        fs.writeFileSync('products.json', JSON.stringify(allProducts, null, 2));
-        console.log('Данные успешно сохранены в products.json');
+        // Сохраняем данные в MySQL
+        for (const product of allProducts) {
+            const [rows] = await connection.execute('SELECT id FROM products WHERE link = ?', [product.link]);
+
+            let productId;
+
+            if (rows.length > 0) {
+                productId = rows[0].id;
+            } else {
+                const [result] = await connection.execute(
+                    'INSERT INTO products (title, image, link) VALUES (?, ?, ?)',
+                    [product.title, product.image, product.link]
+                );
+                productId = result.insertId;
+            }
+
+            await connection.execute(
+                'INSERT INTO prices (product_id, price, date) VALUES (?, ?, CURDATE())',
+                [productId, product.price]
+            );
+        }
+
+        console.log('Данные успешно сохранены в MySQL');
     } catch (error) {
         console.error('Ошибка при получении данных:', error);
     } finally {
         await browser.close();
+        await connection.end();
     }
 }
 

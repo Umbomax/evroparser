@@ -1,8 +1,19 @@
 {
+  "name": "evroparser",
+  "version": "1.0.0",
+  "description": "Server for parsing e-dostavka",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ilia Turovchik",
+  "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.8",
-    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.7.3",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.11.0",
     "node-cron": "^3.0.3",
-    "puppeteer": "^22.9.0"
+    "puppeteer": "^23.0.2"
   }
 }
