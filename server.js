@@ -22,15 +22,18 @@ app.get('/api/products', async (req, res) => {
 
     try {
         const connection = await connectDB();
-        console.log({ searchValue, limit: parseInt(limit, 10), offset: parseInt(offset, 10) });
 
-        const [products] = await connection.execute(`
+        // Примечание: добавляем LIMIT и OFFSET непосредственно в SQL-запрос
+        const query = `
             SELECT p.id, p.title, p.image, p.link, pr.price, pr.date
             FROM products p
             LEFT JOIN prices pr ON p.id = pr.product_id
-            WHERE p.title LIKE ? 
+            WHERE p.title LIKE ?
             ORDER BY pr.date DESC
-            LIMIT ? OFFSET ?`, [searchValue, parseInt(limit, 10), parseInt(offset, 10)]);
+            LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(offset, 10)}
+        `;
+
+        const [products] = await connection.execute(query, [searchValue]);
 
         // Получение общего количества товаров для пагинации
         const [total] = await connection.execute(`
@@ -46,6 +49,7 @@ app.get('/api/products', async (req, res) => {
         res.status(500).json({ error: 'Ошибка при получении списка товаров' });
     }
 });
+
 
 // API для получения данных о ценах по ID товара
 app.get('/api/products/:id/prices', async (req, res) => {
