@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Подключение к базе данных
+
 const connectDB = async () => {
     return mysql.createConnection(process.env.MYSQL_URL);
 };
 
-// API для получения списка товаров с фильтрацией, пагинацией и поиском
+
 app.get('/api/products', async (req, res) => {
     const { search = '', page = 1, limit = 15 } = req.query;
     const offset = (page - 1) * parseInt(limit, 10);
@@ -23,11 +23,18 @@ app.get('/api/products', async (req, res) => {
     try {
         const connection = await connectDB();
 
-        // Примечание: добавляем LIMIT и OFFSET непосредственно в SQL-запрос
         const query = `
             SELECT p.id, p.title, p.image, p.link, pr.price, pr.date
             FROM products p
-            LEFT JOIN prices pr ON p.id = pr.product_id
+            LEFT JOIN (
+                SELECT product_id, price, date
+                FROM prices
+                WHERE (product_id, date) IN (
+                    SELECT product_id, MAX(date)
+                    FROM prices
+                    GROUP BY product_id
+                )
+            ) pr ON p.id = pr.product_id
             WHERE p.title LIKE ?
             ORDER BY pr.date DESC
             LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(offset, 10)}
@@ -35,7 +42,6 @@ app.get('/api/products', async (req, res) => {
 
         const [products] = await connection.execute(query, [searchValue]);
 
-        // Получение общего количества товаров для пагинации
         const [total] = await connection.execute(`
             SELECT COUNT(*) as total 
             FROM products 
@@ -51,7 +57,6 @@ app.get('/api/products', async (req, res) => {
 });
 
 
-// API для получения данных о ценах по ID товара
 app.get('/api/products/:id/prices', async (req, res) => {
     const { id } = req.params;
 
