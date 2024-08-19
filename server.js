@@ -18,27 +18,23 @@ const connectDB = async () => {
 app.get('/api/products', async (req, res) => {
     const { search = '', page = 1, limit = 15 } = req.query;
     const offset = (page - 1) * parseInt(limit, 10);
-    const searchValue = search.trim() === '' ? '%' : `%${search}%`;
+    const searchValue = search.trim() === '' ? '%' : `%${search.toLowerCase()}%`;
 
     try {
         const connection = await connectDB();
 
         const query = `
-            SELECT p.id, p.title, p.image, p.link, pr.price, pr.date
-            FROM products p
-            LEFT JOIN (
-                SELECT product_id, price, date
-                FROM prices
-                WHERE (product_id, date) IN (
-                    SELECT product_id, MAX(date)
-                    FROM prices
-                    GROUP BY product_id
-                )
-            ) pr ON p.id = pr.product_id
-            WHERE p.title LIKE ?
-            ORDER BY pr.date DESC
-            LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(offset, 10)}
-        `;
+        SELECT DISTINCT p.id, p.title, p.image, p.link, pr.price, pr.date
+        FROM products p
+        LEFT JOIN (
+            SELECT product_id, MAX(price) as price, MAX(date) as date
+            FROM prices
+            GROUP BY product_id
+        ) pr ON p.id = pr.product_id
+        WHERE LOWER(p.title) LIKE LOWER(?)
+        ORDER BY pr.date DESC
+        LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(offset, 10)}
+    `;
 
         const [products] = await connection.execute(query, [searchValue]);
 
