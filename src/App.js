@@ -58,7 +58,6 @@ const App = () => {
     };
 
     const handleLogin = () => {
-        
         console.log('Вход выполнен');
     };
 
@@ -112,6 +111,9 @@ const App = () => {
                             <YAxis />
                             <Tooltip />
                             <Line type="monotone" dataKey="price" stroke="#ff7300" />
+                            {priceData.some(item => item.old_price) && (
+                                <Line type="monotone" dataKey="old_price" stroke="#8884d8" />
+                            )}
                         </LineChart>
                     </ResponsiveContainer>
                 </Modal>
