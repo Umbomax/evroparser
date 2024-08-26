@@ -1,0 +1,21 @@
+.header {
+    background-color: #001529;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.siteTitle {
+    font-size: 24px;
+    color: white;
+    margin: 0;
+}

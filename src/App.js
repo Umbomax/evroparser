@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Modal, Button, Input, Pagination, Select } from 'antd';
+import { Modal, Input, Pagination, Select } from 'antd';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import Header from './Components/Header/Header.jsx'; 
+import './App.css'; 
 
 const { Option } = Select;
 
@@ -16,7 +18,11 @@ const App = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
-        fetchProducts();
+        const delayDebounceFn = setTimeout(() => {
+            fetchProducts();
+        }, 2000);
+
+        return () => clearTimeout(delayDebounceFn);
     }, [search, page, limit]);
 
     const fetchProducts = async () => {
@@ -51,18 +57,32 @@ const App = () => {
         setPriceData([]);
     };
 
+    const handleLogin = () => {
+        
+        console.log('Вход выполнен');
+    };
+
     return (
         <div className="App">
+            <Header onLogin={handleLogin} /> 
             <Input 
                 placeholder="Поиск товаров..." 
                 value={search} 
                 onChange={(e) => setSearch(e.target.value)} 
+                style={{ margin: '20px 0' }}
             />
             <Select defaultValue={15} onChange={(value) => setLimit(value)} style={{ margin: '10px' }}>
                 <Option value={15}>15</Option>
                 <Option value={30}>30</Option>
                 <Option value={60}>60</Option>
             </Select>
+            <Pagination 
+                current={page} 
+                total={total} 
+                pageSize={limit} 
+                onChange={(page) => setPage(page)} 
+                style={{ marginTop: '20px' }} 
+            />
             <div className="product-list">
                 {products.map(product => (
                     <div key={product.id} className="product-card" onClick={() => handleProductClick(product)}>
