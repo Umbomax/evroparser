@@ -23,19 +23,17 @@ app.get('/api/products', async (req, res) => {
     try {
         const connection = await connectDB();
 
-        // Примечание: добавляем LIMIT и OFFSET непосредственно в SQL-запрос
         const query = `
-            SELECT p.id, p.title, p.image, p.link, pr.price, pr.date
+            SELECT p.id, p.title, p.image, p.link, rp.price, rp.old_price, rp.start_date AS date
             FROM products p
-            LEFT JOIN prices pr ON p.id = pr.product_id
+            LEFT JOIN reworked_prices rp ON p.id = rp.product_id
             WHERE p.title LIKE ?
-            ORDER BY pr.date DESC
+            ORDER BY rp.start_date DESC
             LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(offset, 10)}
         `;
 
         const [products] = await connection.execute(query, [searchValue]);
 
-        // Получение общего количества товаров для пагинации
         const [total] = await connection.execute(`
             SELECT COUNT(*) as total 
             FROM products 
@@ -50,7 +48,6 @@ app.get('/api/products', async (req, res) => {
     }
 });
 
-
 // API для получения данных о ценах по ID товара
 app.get('/api/products/:id/prices', async (req, res) => {
     const { id } = req.params;
@@ -59,10 +56,10 @@ app.get('/api/products/:id/prices', async (req, res) => {
         const connection = await connectDB();
 
         const [prices] = await connection.execute(`
-            SELECT price, date 
-            FROM prices 
+            SELECT price, old_price, start_date AS date
+            FROM reworked_prices 
             WHERE product_id = ?
-            ORDER BY date ASC`, [id]);
+            ORDER BY start_date ASC`, [id]);
 
         await connection.end();
 
