@@ -14,6 +14,21 @@ const connectDB = async () => {
     return mysql.createConnection(process.env.MYSQL_URL);
 };
 
+
+// Функция для генерации всех дат между start_date и end_date
+const generateDateRange = (startDate, endDate) => {
+    const dates = [];
+    let currentDate = new Date(startDate);
+
+    while (currentDate <= new Date(endDate)) {
+        dates.push(currentDate.toISOString().split('T')[0]);
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return dates;
+};
+
+
 // API для получения списка товаров с фильтрацией, пагинацией и поиском
 app.get('/api/products', async (req, res) => {
     const { search = '', page = 1, limit = 15 } = req.query;
@@ -55,11 +70,27 @@ app.get('/api/products/:id/prices', async (req, res) => {
     try {
         const connection = await connectDB();
 
-        const [prices] = await connection.execute(`
-            SELECT price, old_price, start_date AS date
+        const [priceRanges] = await connection.execute(`
+            SELECT price, old_price, start_date, end_date
             FROM reworked_prices 
             WHERE product_id = ?
             ORDER BY start_date ASC`, [id]);
+
+        const prices = [];
+
+        // Генерация ежедневных записей с ценами
+        priceRanges.forEach(range => {
+            const { price, old_price, start_date, end_date } = range;
+            const dates = generateDateRange(start_date, end_date);
+
+            dates.forEach(date => {
+                prices.push({
+                    date: date,
+                    price: price,
+                    old_price: old_price
+                });
+            });
+        });
 
         await connection.end();
 
