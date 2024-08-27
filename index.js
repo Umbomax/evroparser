@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer');
 require('dotenv').config();
 const mysql = require('mysql2/promise');
-const fs = require('fs');
 
 async function fetchProductData() {
     const baseUrls = [
@@ -48,7 +47,6 @@ async function fetchProductData() {
                 const paginationElement = document.querySelector('[class*="pagination_pagination"]');
                 if (!paginationElement) return 1;
 
-                
                 const totalElements = paginationElement.children.length;
                 return totalElements > 2 ? totalElements - 2 : 1;
             });
@@ -76,6 +74,9 @@ async function fetchProductData() {
                         const priceElement = product.querySelector('[class*="vertical_information"] [class*="price_price"] span');
                         const price = priceElement ? priceElement.textContent.trim().replace(' р.', '').replace(',', '.') : null;
 
+                        const oldPriceElement = product.querySelector('span[class*="price_old"]');
+                        const oldPrice = oldPriceElement ? oldPriceElement.textContent.trim().replace(' р.', '').replace(',', '.') : null;
+
                         const linkElement = product.querySelector('[class*="card-image_link"]');
                         const link = linkElement ? linkElement.href : null;
 
@@ -84,6 +85,8 @@ async function fetchProductData() {
                                 image: imageSrc,
                                 title: title,
                                 price: parseFloat(price),
+                                oldPrice: oldPrice ? parseFloat(oldPrice) : null,
+                                onSale: oldPriceElement !== null,
                                 link: link
                             });
                         }
@@ -99,9 +102,9 @@ async function fetchProductData() {
         // Оптимизированная запись данных в MySQL
         for (const product of allProducts) {
             const [rows] = await connection.execute('SELECT id FROM products WHERE link = ?', [product.link]);
-
+        
             let productId;
-
+        
             if (rows.length > 0) {
                 productId = rows[0].id;
             } else {
@@ -111,13 +114,35 @@ async function fetchProductData() {
                 );
                 productId = result.insertId;
             }
-
-            // Пакетная вставка данных о ценах
-            const priceData = [productId, product.price];
-            await connection.execute(
-                'INSERT INTO prices (product_id, price, date) VALUES (?, ?, CURDATE())',
-                priceData
+        
+            // Проверяем последнюю запись в таблице reworked_prices для данного продукта
+            const [lastPriceRecord] = await connection.execute(
+                `SELECT * FROM reworked_prices WHERE product_id = ? ORDER BY start_date DESC LIMIT 1`,
+                [productId]
             );
+        
+            if (lastPriceRecord.length > 0) {
+                const lastPrice = lastPriceRecord[0];
+        
+                // Если цена изменилась или скидка изменилась, завершаем старый период и начинаем новый
+                if (lastPrice.price !== product.price || lastPrice.old_price !== product.oldPrice) {
+                    await connection.execute(
+                        `UPDATE reworked_prices SET end_date = CURDATE() WHERE id = ?`,
+                        [lastPrice.id]
+                    );
+        
+                    await connection.execute(
+                        `INSERT INTO reworked_prices (product_id, price, old_price, start_date, on_sale) VALUES (?, ?, ?, CURDATE(), ?)`,
+                        [productId, product.price, product.oldPrice, product.onSale]
+                    );
+                }
+            } else {
+                // Если записи о цене не существует, создаем новую
+                await connection.execute(
+                    `INSERT INTO reworked_prices (product_id, price, old_price, start_date, on_sale) VALUES (?, ?, ?, CURDATE(), ?)`,
+                    [productId, product.price, product.oldPrice, product.onSale]
+                );
+            }
         }
 
         console.log('Данные успешно сохранены в MySQL');
