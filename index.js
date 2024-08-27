@@ -2,6 +2,12 @@ const puppeteer = require('puppeteer');
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
+// Функция для удаления мягких дефисов
+function removeSoftHyphens(text) {
+    if (!text) return text;
+    return text.replace(/\u00AD/g, ''); // Удаляет символы мягкого дефиса (U+00AD)
+}
+
 async function fetchProductData() {
     const baseUrls = [
         'https://edostavka.by/category/5138',
@@ -27,7 +33,6 @@ async function fetchProductData() {
         'https://edostavka.by/category/5994'
     ];
 
-    // Подключаемся к базе данных MySQL
     const connection = await mysql.createConnection(process.env.MYSQL_URL);
 
     const browser = await puppeteer.launch({
@@ -39,10 +44,8 @@ async function fetchProductData() {
 
     try {
         for (const baseUrl of baseUrls) {
-            // Открываем первую страницу для получения totalPages
             await page.goto(`${baseUrl}?page=1&lc=5`, { waitUntil: 'networkidle2', timeout: 0 });
 
-            // Извлекаем количество страниц
             const totalPages = await page.evaluate(() => {
                 const paginationElement = document.querySelector('[class*="pagination_pagination"]');
                 if (!paginationElement) return 1;
@@ -55,7 +58,6 @@ async function fetchProductData() {
                 const url = `${baseUrl}?page=${i}&lc=5`;
                 await page.goto(url, { waitUntil: 'networkidle2', timeout: 0 });
 
-                // Извлекаем данные
                 const products = await page.evaluate(() => {
                     const productContainer = document.querySelector('[class*="products_products"]');
                     if (!productContainer) return [];
@@ -99,45 +101,45 @@ async function fetchProductData() {
             }
         }
 
-        // Оптимизированная запись данных в MySQL
         for (const product of allProducts) {
-            const [rows] = await connection.execute('SELECT id FROM products WHERE link = ?', [product.link]);
-        
+            // Удаляем мягкие дефисы из данных перед вставкой
+            const cleanedTitle = removeSoftHyphens(product.title);
+            const cleanedLink = removeSoftHyphens(product.link);
+
+            const [rows] = await connection.execute('SELECT id FROM products WHERE link = ?', [cleanedLink]);
+
             let productId;
-        
+
             if (rows.length > 0) {
                 productId = rows[0].id;
             } else {
                 const [result] = await connection.execute(
                     'INSERT INTO products (title, image, link) VALUES (?, ?, ?)',
-                    [product.title, product.image, product.link]
+                    [cleanedTitle, product.image, cleanedLink]
                 );
                 productId = result.insertId;
             }
-        
-            // Проверяем последнюю запись в таблице reworked_prices для данного продукта
+
             const [lastPriceRecord] = await connection.execute(
                 `SELECT * FROM reworked_prices WHERE product_id = ? ORDER BY start_date DESC LIMIT 1`,
                 [productId]
             );
-        
+
             if (lastPriceRecord.length > 0) {
                 const lastPrice = lastPriceRecord[0];
-        
-                // Если цена изменилась или скидка изменилась, завершаем старый период и начинаем новый
+
                 if (lastPrice.price !== product.price || lastPrice.old_price !== product.oldPrice) {
                     await connection.execute(
                         `UPDATE reworked_prices SET end_date = CURDATE() WHERE id = ?`,
                         [lastPrice.id]
                     );
-        
+
                     await connection.execute(
                         `INSERT INTO reworked_prices (product_id, price, old_price, start_date, on_sale) VALUES (?, ?, ?, CURDATE(), ?)`,
                         [productId, product.price, product.oldPrice, product.onSale]
                     );
                 }
             } else {
-                // Если записи о цене не существует, создаем новую
                 await connection.execute(
                     `INSERT INTO reworked_prices (product_id, price, old_price, start_date, on_sale) VALUES (?, ?, ?, CURDATE(), ?)`,
                     [productId, product.price, product.oldPrice, product.onSale]
