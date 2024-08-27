@@ -9,25 +9,22 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Подключение к базе данных
 const connectDB = async () => {
     return mysql.createConnection(process.env.MYSQL_URL);
 };
-
 
 // Функция для генерации всех дат между start_date и end_date
 const generateDateRange = (startDate, endDate) => {
     const dates = [];
     let currentDate = new Date(startDate);
 
-    while (currentDate <= new Date(endDate)) {
+    while (currentDate <= new Date(endDate || new Date())) {
         dates.push(currentDate.toISOString().split('T')[0]);
         currentDate.setDate(currentDate.getDate() + 1);
     }
 
     return dates;
 };
-
 
 // API для получения списка товаров с фильтрацией, пагинацией и поиском
 app.get('/api/products', async (req, res) => {
@@ -38,10 +35,15 @@ app.get('/api/products', async (req, res) => {
     try {
         const connection = await connectDB();
 
+        // Подзапрос для получения последней цены для каждого товара
         const query = `
             SELECT p.id, p.title, p.image, p.link, rp.price, rp.old_price, rp.start_date AS date
             FROM products p
-            LEFT JOIN reworked_prices rp ON p.id = rp.product_id
+            LEFT JOIN (
+                SELECT product_id, price, old_price, start_date
+                FROM reworked_prices
+                WHERE start_date = (SELECT MAX(start_date) FROM reworked_prices WHERE product_id = reworked_prices.product_id)
+            ) rp ON p.id = rp.product_id
             WHERE p.title LIKE ?
             ORDER BY rp.start_date DESC
             LIMIT ${parseInt(limit, 10)} OFFSET ${parseInt(offset, 10)}
