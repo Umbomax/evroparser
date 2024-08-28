@@ -21,6 +21,7 @@ const App = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [key, setKey] = useState(0);
     const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
     useEffect(() => {
@@ -35,6 +36,7 @@ const App = () => {
             });
             setProducts(response.data.products);
             setTotal(response.data.total);
+            setKey(prevKey => prevKey + 1);
         } catch (error) {
             console.error('Ошибка при получении данных:', error);
         }
@@ -115,7 +117,7 @@ const App = () => {
                     onChange={(page) => setPage(page)} 
                     style={{ marginTop: '20px' }} 
                 />
-                <div className="product-list">
+                <div key={key} className="product-list">
                     {products.map(product => (
                         <div key={product.id} className="product-card" onClick={() => handleProductClick(product)}>
                             <h3>{product.title}</h3>
