@@ -1,6 +1,8 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
@@ -102,7 +104,77 @@ app.get('/api/products/:id/prices', async (req, res) => {
         res.status(500).json({ error: 'Ошибка при получении данных о ценах' });
     }
 });
+app.post('/api/register', async (req, res) => {
+    const { username, email, password } = req.body;
 
+    if (!username || !email || !password) {
+        return res.status(400).json({ error: 'Все поля обязательны для заполнения' });
+    }
+
+    try {
+        const connection = await connectDB();
+
+        // Проверка существующего пользователя
+        const [userExists] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
+
+        if (userExists.length > 0) {
+            await connection.end();
+            return res.status(409).json({ error: 'Пользователь с таким email уже существует' });
+        }
+
+        // Хэширование пароля
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Вставка нового пользователя в базу данных
+        await connection.execute(
+            'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+            [username, email, hashedPassword]
+        );
+
+        await connection.end();
+        res.status(201).json({ message: 'Регистрация успешна' });
+    } catch (error) {
+        console.error('Ошибка при регистрации пользователя:', error);
+        res.status(500).json({ error: 'Ошибка при регистрации пользователя' });
+    }
+});
+
+// Вход пользователя
+app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Все поля обязательны для заполнения' });
+    }
+
+    try {
+        const connection = await connectDB();
+
+        // Поиск пользователя по email
+        const [user] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
+
+        if (user.length === 0) {
+            await connection.end();
+            return res.status(404).json({ error: 'Пользователь не найден' });
+        }
+
+        const validPassword = await bcrypt.compare(password, user[0].password);
+
+        if (!validPassword) {
+            await connection.end();
+            return res.status(401).json({ error: 'Неправильный пароль' });
+        }
+
+        // Генерация JWT токена
+        const token = jwt.sign({ id: user[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        await connection.end();
+        res.json({ token, message: 'Вход успешен' });
+    } catch (error) {
+        console.error('Ошибка при входе пользователя:', error);
+        res.status(500).json({ error: 'Ошибка при входе пользователя' });
+    }
+});
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
