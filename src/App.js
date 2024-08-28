@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Input, Button, Form, Select, Pagination, message } from 'antd';
+import {
+    LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer
+} from 'recharts';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Header from './Components/Header/Header.jsx';
@@ -17,10 +20,17 @@ const App = () => {
     const [priceData, setPriceData] = useState([]);
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
+    useEffect(() => {
+        fetchProducts();  // Загрузка товаров при первой загрузке страницы
+    }, [page, limit]);
+
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/products', {
+            const response = await axios.get('https://pacific-commitment-production.up.railway.app/api/products', {
                 params: { search, page, limit }
             });
             setProducts(response.data.products);
@@ -32,7 +42,7 @@ const App = () => {
 
     const fetchPriceData = async (productId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/products/${productId}/prices`);
+            const response = await axios.get(`https://pacific-commitment-production.up.railway.app/api/products/${productId}/prices`);
             setPriceData(response.data);
         } catch (error) {
             console.error('Ошибка при получении данных о ценах:', error);
@@ -40,6 +50,7 @@ const App = () => {
     };
 
     const handleProductClick = (product) => {
+        setModalVisible(true)
         setSelectedProduct(product);
         fetchPriceData(product.id);
     };
@@ -49,26 +60,27 @@ const App = () => {
     };
 
     const handleLogin = () => {
-        setLoginModalOpen(true);
         setIsRegistering(false);
+        setLoginModalOpen(true);
     };
 
     const handleRegister = () => {
-        setLoginModalOpen(true);
         setIsRegistering(true);
+        setLoginModalOpen(true);
     };
 
     const handleModalClose = () => {
         setLoginModalOpen(false);
+        setModalVisible(false)
     };
 
     const onFinish = async (values) => {
         try {
             if (isRegistering) {
-                const response = await axios.post('http://localhost:5000/api/register', values);
+                const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/register', values);
                 message.success(response.data.message);
             } else {
-                const response = await axios.post('http://localhost:5000/api/login', values);
+                const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/login', values);
                 message.success(response.data.message);
                 localStorage.setItem('token', response.data.token);
             }
@@ -79,7 +91,7 @@ const App = () => {
     };
 
     return (
-        <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+        <GoogleOAuthProvider clientId={googleClientId}>
             <div className="App">
                 <Header onLogin={handleLogin} onRegister={handleRegister} />
                 <Input 
@@ -125,6 +137,14 @@ const App = () => {
                     onCancel={handleModalClose}
                     footer={null}
                 >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                        <Button type={!isRegistering ? 'primary' : 'default'} onClick={() => setIsRegistering(false)}>
+                            Войти
+                        </Button>
+                        <Button type={isRegistering ? 'primary' : 'default'} onClick={() => setIsRegistering(true)}>
+                            Зарегистрироваться
+                        </Button>
+                    </div>
                     <Form layout="vertical" onFinish={onFinish}>
                         {isRegistering && (
                             <Form.Item
@@ -149,12 +169,33 @@ const App = () => {
                         >
                             <Input.Password placeholder="Введите ваш пароль" />
                         </Form.Item>
+                        {isRegistering && (
+                            <Form.Item
+                                label="Подтверждение пароля"
+                                name="confirmPassword"
+                                dependencies={['password']}
+                                rules={[
+                                    { required: true, message: 'Пожалуйста, подтвердите ваш пароль' },
+                                    ({ getFieldValue }) => ({
+                                        validator(_, value) {
+                                            if (!value || getFieldValue('password') === value) {
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(new Error('Пароли не совпадают!'));
+                                        },
+                                    }),
+                                ]}
+                            >
+                                <Input.Password placeholder="Подтвердите ваш пароль" />
+                            </Form.Item>
+                        )}
                         <Button type="primary" htmlType="submit" block>
                             {isRegistering ? "Зарегистрироваться" : "Войти"}
                         </Button>
                     </Form>
                     <div style={{ textAlign: 'center', margin: '20px 0' }}>или</div>
                     <GoogleLogin
+                        clientId = {googleClientId}
                         onSuccess={credentialResponse => {
                             console.log(credentialResponse);
                             handleModalClose();
@@ -164,6 +205,26 @@ const App = () => {
                         }}
                     />
                 </Modal>
+                {selectedProduct && (
+                <Modal visible={modalVisible} onCancel={handleModalClose} footer={null}>
+                    <h2>{selectedProduct.title}</h2>
+                    <img src={selectedProduct.image} alt={selectedProduct.title} style={{ width: '100%' }} />
+                    <p>Цена на последнюю дату: {selectedProduct.price ? `${selectedProduct.price} р.` : 'Не указано'}</p>
+                    <p>Дата последнего сканирования: {selectedProduct.date}</p>
+                    <ResponsiveContainer width="100%" height={400}>
+                        <LineChart data={priceData}>
+                            <CartesianGrid stroke="#f5f5f5" />
+                            <XAxis dataKey="date" />
+                            <YAxis />
+                            <Tooltip />
+                            <Line type="monotone" dataKey="price" stroke="#ff7300" />
+                            {priceData.some(item => item.old_price) && (
+                                <Line type="monotone" dataKey="old_price" stroke="#8884d8" />
+                            )}
+                        </LineChart>
+                    </ResponsiveContainer>
+                </Modal>
+            )}
             </div>
         </GoogleOAuthProvider>
     );
