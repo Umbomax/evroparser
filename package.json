@@ -71,6 +71,7 @@
     "get-caller-file": "^2.0.5",
     "get-stream": "^5.2.0",
     "get-uri": "^6.0.3",
+    "google-auth-library": "^9.14.0",
     "graceful-fs": "^4.2.11",
     "has-flag": "^3.0.0",
     "htmlparser2": "^9.1.0",

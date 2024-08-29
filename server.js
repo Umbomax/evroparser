@@ -3,10 +3,15 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { OAuth2Client } = require('google-auth-library');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+const client = new OAuth2Client(googleClientId, googleClientSecret);
 
 app.use(cors());
 app.use(express.json());
@@ -175,6 +180,51 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ error: 'Ошибка при входе пользователя' });
     }
 });
+
+app.post('/api/google-login', async (req, res) => {
+    const { token } = req.body;
+
+    try {
+        // Верификация токена
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: googleClientId,
+        });
+        const payload = ticket.getPayload();
+
+        const { email, sub: googleId, name } = payload;
+
+        const connection = await connectDB();
+
+        // Поиск пользователя в базе данных
+        const [user] = await connection.execute('SELECT * FROM users WHERE google_id = ? OR email = ?', [googleId, email]);
+
+        let userId;
+
+        if (user.length === 0) {
+            // Если пользователя нет, создаем его
+            const [result] = await connection.execute(
+                'INSERT INTO users (username, email, google_id) VALUES (?, ?, ?)',
+                [name, email, googleId]
+            );
+            userId = result.insertId;
+        } else {
+            userId = user[0].id;
+        }
+
+        // Генерация JWT токена
+        const jwtToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        await connection.end();
+
+        res.json({ token: jwtToken, message: 'Вход через Google успешен' });
+    } catch (error) {
+        console.error('Ошибка при входе через Google:', error);
+        res.status(500).json({ error: 'Ошибка при входе через Google' });
+    }
+});
+
+
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
