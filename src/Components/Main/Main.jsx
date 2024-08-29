@@ -96,10 +96,10 @@ const Main = () => {
         <GoogleOAuthProvider clientId={googleClientId}>
             <div className="App">
                 <Header onLogin={handleLogin} onRegister={handleRegister} />
-                <Input 
-                    placeholder="Поиск товаров..." 
-                    value={search} 
-                    onChange={(e) => setSearch(e.target.value)} 
+                <Input
+                    placeholder="Поиск товаров..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                     style={{ margin: '20px 0' }}
                 />
                 <Button onClick={handleSearch} type="primary" style={{ marginBottom: '20px' }}>
@@ -110,12 +110,12 @@ const Main = () => {
                     <Option value={30}>30</Option>
                     <Option value={60}>60</Option>
                 </Select>
-                <Pagination 
-                    current={page} 
-                    total={total} 
-                    pageSize={limit} 
-                    onChange={(page) => setPage(page)} 
-                    style={{ marginTop: '20px' }} 
+                <Pagination
+                    current={page}
+                    total={total}
+                    pageSize={limit}
+                    onChange={(page) => setPage(page)}
+                    style={{ marginTop: '20px' }}
                 />
                 <div key={key} className="product-list">
                     {products.map((product, index) => (
@@ -126,12 +126,12 @@ const Main = () => {
                         </div>
                     ))}
                 </div>
-                <Pagination 
-                    current={page} 
-                    total={total} 
-                    pageSize={limit} 
-                    onChange={(page) => setPage(page)} 
-                    style={{ marginTop: '20px' }} 
+                <Pagination
+                    current={page}
+                    total={total}
+                    pageSize={limit}
+                    onChange={(page) => setPage(page)}
+                    style={{ marginTop: '20px' }}
                 />
                 <Modal
                     title={isRegistering ? "Регистрация" : "Вход"}
@@ -197,10 +197,18 @@ const Main = () => {
                     </Form>
                     <div style={{ textAlign: 'center', margin: '20px 0' }}>или</div>
                     <GoogleLogin
-                        clientId = {googleClientId}
-                        onSuccess={credentialResponse => {
-                            console.log(credentialResponse);
-                            handleModalClose();
+                        onSuccess={async (credentialResponse) => {
+                            try {
+                                const response = await axios.post('https://ваш-домен/api/google-login', {
+                                    token: credentialResponse.credential
+                                });
+                                message.success(response.data.message);
+                                localStorage.setItem('token', response.data.token);
+                                handleModalClose();
+                            } catch (error) {
+                                console.error('Ошибка при входе через Google:', error);
+                                message.error('Ошибка при входе через Google');
+                            }
                         }}
                         onError={() => {
                             console.log('Ошибка при входе через Google');
@@ -208,25 +216,25 @@ const Main = () => {
                     />
                 </Modal>
                 {selectedProduct && (
-                <Modal visible={modalVisible} onCancel={handleModalClose} footer={null}>
-                    <h2>{selectedProduct.title}</h2>
-                    <img src={selectedProduct.image} alt={selectedProduct.title} style={{ width: '100%' }} />
-                    <p>Цена на последнюю дату: {selectedProduct.price ? `${selectedProduct.price} р.` : 'Не указано'}</p>
-                    <p>Дата последнего сканирования: {selectedProduct.date}</p>
-                    <ResponsiveContainer width="100%" height={400}>
-                        <LineChart data={priceData}>
-                            <CartesianGrid stroke="#f5f5f5" />
-                            <XAxis dataKey="date" />
-                            <YAxis />
-                            <Tooltip />
-                            <Line type="monotone" dataKey="price" stroke="#ff7300" />
-                            {priceData.some(item => item.old_price) && (
-                                <Line type="monotone" dataKey="old_price" stroke="#8884d8" />
-                            )}
-                        </LineChart>
-                    </ResponsiveContainer>
-                </Modal>
-            )}
+                    <Modal visible={modalVisible} onCancel={handleModalClose} footer={null}>
+                        <h2>{selectedProduct.title}</h2>
+                        <img src={selectedProduct.image} alt={selectedProduct.title} style={{ width: '100%' }} />
+                        <p>Цена на последнюю дату: {selectedProduct.price ? `${selectedProduct.price} р.` : 'Не указано'}</p>
+                        <p>Дата последнего сканирования: {selectedProduct.date}</p>
+                        <ResponsiveContainer width="100%" height={400}>
+                            <LineChart data={priceData}>
+                                <CartesianGrid stroke="#f5f5f5" />
+                                <XAxis dataKey="date" />
+                                <YAxis />
+                                <Tooltip />
+                                <Line type="monotone" dataKey="price" stroke="#ff7300" />
+                                {priceData.some(item => item.old_price) && (
+                                    <Line type="monotone" dataKey="old_price" stroke="#8884d8" />
+                                )}
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </Modal>
+                )}
             </div>
         </GoogleOAuthProvider>
     );
