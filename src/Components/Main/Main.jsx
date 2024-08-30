@@ -199,7 +199,7 @@ const Main = () => {
                     <GoogleLogin
                         onSuccess={async (credentialResponse) => {
                             try {
-                                const response = await axios.post('https://ваш-домен/api/google-login', {
+                                const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/google-login', {
                                     token: credentialResponse.credential
                                 });
                                 message.success(response.data.message);
