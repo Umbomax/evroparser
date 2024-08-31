@@ -110,16 +110,15 @@ app.get('/api/products/:id/prices', async (req, res) => {
     }
 });
 app.post('/api/register', async (req, res) => {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!username || !email || !password) {
+    if (!email || !password) {
         return res.status(400).json({ error: 'Все поля обязательны для заполнения' });
     }
 
     try {
         const connection = await connectDB();
 
-        // Проверка существующего пользователя
         const [userExists] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
 
         if (userExists.length > 0) {
@@ -127,13 +126,11 @@ app.post('/api/register', async (req, res) => {
             return res.status(409).json({ error: 'Пользователь с таким email уже существует' });
         }
 
-        // Хэширование пароля
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Вставка нового пользователя в базу данных
         await connection.execute(
-            'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-            [username, email, hashedPassword]
+            'INSERT INTO users (email, password) VALUES (?, ?)',
+            [email, hashedPassword]
         );
 
         await connection.end();
@@ -224,7 +221,54 @@ app.post('/api/google-login', async (req, res) => {
     }
 });
 
+// Добавление товара в отслеживаемые
+app.post('/api/track-product', async (req, res) => {
+    const { productId } = req.body;
+    const token = req.headers.authorization.split(' ')[1];
 
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const connection = await connectDB();
+
+        await connection.execute('INSERT INTO tracked_products (user_id, product_id) VALUES (?, ?)', [decoded.id, productId]);
+
+        await connection.end();
+        res.status(201).json({ message: 'Товар добавлен в отслеживаемые' });
+    } catch (error) {
+        console.error('Ошибка при добавлении товара в отслеживаемые:', error);
+        res.status(500).json({ error: 'Ошибка при добавлении товара в отслеживаемые' });
+    }
+});
+
+// Получение отслеживаемых товаров
+app.get('/api/tracked-products', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const connection = await connectDB();
+
+        const [products] = await connection.execute(`
+            SELECT p.id, p.title, p.image, p.link, rp.price, rp.old_price, rp.start_date AS date
+            FROM tracked_products tp
+            JOIN products p ON tp.product_id = p.id
+            LEFT JOIN (
+                SELECT product_id, price, old_price, start_date
+                FROM reworked_prices
+                WHERE start_date = (SELECT MAX(start_date) FROM reworked_prices WHERE product_id = reworked_prices.product_id)
+            ) rp ON p.id = rp.product_id
+            WHERE tp.user_id = ?
+            ORDER BY rp.start_date DESC
+        `, [decoded.id]);
+
+        await connection.end();
+
+        res.json({ products });
+    } catch (error) {
+        console.error('Ошибка при получении отслеживаемых товаров:', error);
+        res.status(500).json({ error: 'Ошибка при получении отслеживаемых товаров' });
+    }
+});
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
