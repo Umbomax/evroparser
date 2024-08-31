@@ -240,6 +240,60 @@ app.post('/api/track-product', async (req, res) => {
     }
 });
 
+// Удаление записи из таблицы отслеживаемых товаров
+app.post('/api/untrack-product', async (req, res) => {
+    const { productId } = req.body;
+    const token = req.headers.authorization.split(' ')[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const connection = await connectDB();
+
+
+        const [result] = await connection.execute(
+            'DELETE FROM tracked_products WHERE user_id = ? AND product_id = ?',
+            [decoded.id, productId]
+        );
+
+        await connection.end();
+
+        if (result.affectedRows > 0) {
+            res.status(200).json({ message: 'Товар удален из отслеживаемых' });
+        } else {
+            res.status(404).json({ message: 'Товар не найден в отслеживаемых' });
+        }
+    } catch (error) {
+        console.error('Ошибка при удалении товара из отслеживаемых:', error);
+        res.status(500).json({ error: 'Ошибка при удалении товара из отслеживаемых' });
+    }
+});
+// Проверяем отслеживается ло товар
+app.post('/api/check-tracked', async (req, res) => {
+    const { productId } = req.body;
+    const token = req.headers.authorization.split(' ')[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const connection = await connectDB();
+
+        // Проверка, отслеживается ли продукт
+        const [rows] = await connection.execute(
+            'SELECT * FROM tracked_products WHERE user_id = ? AND product_id = ?',
+            [decoded.id, productId]
+        );
+
+        await connection.end();
+
+        if (rows.length > 0) {
+            res.status(200).json({ isTracked: true });
+        } else {
+            res.status(200).json({ isTracked: false });
+        }
+    } catch (error) {
+        console.error('Ошибка при проверке отслеживаемого товара:', error);
+        res.status(500).json({ error: 'Ошибка при проверке отслеживаемого товара' });
+    }
+});
 // Получение отслеживаемых товаров
 app.get('/api/tracked-products', async (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
