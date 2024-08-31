@@ -10,9 +10,10 @@ import '../../App.css';
 
 const { Option } = Select;
 
-const Main = () => {
+const Main = ({ showTrackedProducts = false }) => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
+    const [email, setEmail] = useState('');
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(15);
     const [total, setTotal] = useState(0);
@@ -22,17 +23,19 @@ const Main = () => {
     const [isRegistering, setIsRegistering] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [key, setKey] = useState(0);
-    const [isTracked, setIsTracked] = useState(false); // Для отслеживания состояния чекбокса
+    const [isTracked, setIsTracked] = useState(false); 
     const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-    useEffect(() => {
-        fetchProducts();  // Загрузка товаров при первой загрузке страницы
-    }, [page, limit]);
-
+    // Обновленная функция fetchProducts, которая поддерживает оба режима
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('https://pacific-commitment-production.up.railway.app/api/products', {
-                params: { search, page, limit }
+            const url = showTrackedProducts 
+                ? 'https://pacific-commitment-production.up.railway.app/api/tracked-products' 
+                : 'https://pacific-commitment-production.up.railway.app/api/products';
+            const token = localStorage.getItem('token');
+            const response = await axios.get(url, {
+                params: { search, page, limit },
+                headers: showTrackedProducts ? { Authorization: `Bearer ${token}` } : {}
             });
             setProducts(response.data.products);
             setTotal(response.data.total);
@@ -41,6 +44,13 @@ const Main = () => {
             console.error('Ошибка при получении данных:', error);
         }
     };
+    useEffect(() => {
+        fetchProducts();
+    }, [showTrackedProducts]);
+    
+    useEffect(() => {
+        fetchProducts();
+    }, [page, limit]);
 
     const fetchPriceData = async (productId) => {
         try {
@@ -52,16 +62,19 @@ const Main = () => {
     };
 
     const fetchTrackedStatus = async (productId) => {
-        const token = localStorage.getItem('token');
-        if (!token) return;
-
         try {
-            const response = await axios.get(`https://pacific-commitment-production.up.railway.app/api/is-tracked/${productId}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await axios.post(
+                'https://pacific-commitment-production.up.railway.app/api/check-tracked',
+                { productId },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                }
+            );
             setIsTracked(response.data.isTracked);
         } catch (error) {
-            console.error('Ошибка при получении статуса отслеживания:', error);
+            console.error('Ошибка при проверке статуса отслеживания:', error);
         }
     };
 
@@ -69,9 +82,10 @@ const Main = () => {
         setModalVisible(true);
         setSelectedProduct(product);
         fetchPriceData(product.id);
-        fetchTrackedStatus(product.id); // Получение статуса отслеживания
+        fetchTrackedStatus(product.id);
     };
 
+    // handleSearch вызывает fetchProducts вручную для выполнения поиска
     const handleSearch = () => {
         fetchProducts();
     };
@@ -101,6 +115,7 @@ const Main = () => {
                 message.success(response.data.message);
                 localStorage.setItem('token', response.data.token);
             }
+            setEmail(values.email);
             handleModalClose();
         } catch (error) {
             message.error(error.response?.data?.error || 'Произошла ошибка');
@@ -136,7 +151,7 @@ const Main = () => {
     return (
         <GoogleOAuthProvider clientId={googleClientId}>
             <div className="App">
-                <Header onLogin={handleLogin} onRegister={handleRegister} />
+                <Header email={email} onLogin={handleLogin} onRegister={handleRegister} />
                 <Input
                     placeholder="Поиск товаров..."
                     value={search}
@@ -189,15 +204,6 @@ const Main = () => {
                         </Button>
                     </div>
                     <Form layout="vertical" onFinish={onFinish}>
-                        {isRegistering && (
-                            <Form.Item
-                                label="Имя пользователя"
-                                name="username"
-                                rules={[{ required: true, message: 'Пожалуйста, введите имя пользователя' }]}
-                            >
-                                <Input placeholder="Введите ваше имя пользователя" />
-                            </Form.Item>
-                        )}
                         <Form.Item
                             label="Email"
                             name="email"
@@ -258,32 +264,31 @@ const Main = () => {
                 </Modal>
                 {selectedProduct && (
                     <Modal visible={modalVisible} onCancel={handleModalClose} footer={null}>
-                        <h2>{selectedProduct.title}</h2>
-                        <img src={selectedProduct.image} alt={selectedProduct.title} style={{ width: '100%' }} />
-                        <p>Цена на последнюю дату: {selectedProduct.price ? `${selectedProduct.price} р.` : 'Не указано'}</p>
-                        <p>Дата последнего сканирования: {selectedProduct.date}</p>
-                        <ResponsiveContainer width="100%" height={400}>
-                            <LineChart data={priceData}>
-                                <CartesianGrid stroke="#f5f5f5" />
-                                <XAxis dataKey="date" />
-                                <YAxis />
-                                <Tooltip />
-                                <Line type="monotone" dataKey="price" stroke="#ff7300" />
-                                {priceData.some(item => item.old_price) && (
-                                    <Line type="monotone" dataKey="old_price" stroke="#8884d8" />
-                                )}
-                            </LineChart>
-                        </ResponsiveContainer>
-                        {localStorage.getItem('token') && (
-                            <Checkbox
-                                checked={isTracked}
-                                onChange={(e) => handleTrackingChange(e.target.checked)}
-                                style={{ marginTop: '20px' }}
-                            >
-                                Отслеживать
-                            </Checkbox>
-                        )}
-                    </Modal>
+                    <h2>{selectedProduct.title}</h2>
+                    <img src={selectedProduct.image} alt={selectedProduct.title} style={{ width: '100%' }} />
+                    <p>Цена на последнюю дату: {selectedProduct.price ? `${selectedProduct.price} р.` : 'Не указано'}</p>
+                    <p>Дата последнего сканирования: {selectedProduct.date}</p>
+                    
+                    <Checkbox
+                        checked={isTracked}
+                        onChange={(e) => handleTrackingChange(e.target.checked)}
+                    >
+                        Отслеживать
+                    </Checkbox>
+            
+                    <ResponsiveContainer width="100%" height={400}>
+                        <LineChart data={priceData}>
+                            <CartesianGrid stroke="#f5f5f5" />
+                            <XAxis dataKey="date" />
+                            <YAxis />
+                            <Tooltip />
+                            <Line type="monotone" dataKey="price" stroke="#ff7300" />
+                            {priceData.some(item => item.old_price) && (
+                                <Line type="monotone" dataKey="old_price" stroke="#8884d8" />
+                            )}
+                        </LineChart>
+                    </ResponsiveContainer>
+                </Modal>
                 )}
             </div>
         </GoogleOAuthProvider>

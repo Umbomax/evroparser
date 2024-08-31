@@ -1,21 +1,73 @@
+/* Header.module.css */
 .header {
-    background-color: #001529;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
+    background-color: #001529; /* Цвет фона, похожий на Ant Design */
     color: white;
 }
 
 .headerContent {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
 }
 
 .siteTitle {
+    margin: 0;
     font-size: 24px;
     color: white;
+}
+
+.menu {
+    margin: 0 20px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.userActions {
+    display: flex;
+    align-items: center;
+}
+
+.userEmail {
+    margin-right: 10px;
+    color: #f0f0f0;
+    font-size: 14px;
+}
+.menu {
+    display: flex;
+    list-style: none;
     margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-right: 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.menu li:hover {
+    color: #1890ff;
+}
+
+@media (max-width: 768px) {
+    .siteTitle {
+        font-size: 18px;
+    }
+
+    .userActions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .siteTitle {
+        font-size: 16px;
+    }
 }
