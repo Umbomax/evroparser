@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Input, Button, Form, Select, Pagination, message } from 'antd';
+import { Modal, Input, Button, Form, Select, Pagination, message, Checkbox } from 'antd';
 import {
     LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer
 } from 'recharts';
@@ -22,13 +22,13 @@ const Main = () => {
     const [isRegistering, setIsRegistering] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [key, setKey] = useState(0);
+    const [isTracked, setIsTracked] = useState(false); // Для отслеживания состояния чекбокса
     const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
     useEffect(() => {
         fetchProducts();  // Загрузка товаров при первой загрузке страницы
     }, [page, limit]);
 
-    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID);
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://pacific-commitment-production.up.railway.app/api/products', {
@@ -51,10 +51,25 @@ const Main = () => {
         }
     };
 
+    const fetchTrackedStatus = async (productId) => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        try {
+            const response = await axios.get(`https://pacific-commitment-production.up.railway.app/api/is-tracked/${productId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setIsTracked(response.data.isTracked);
+        } catch (error) {
+            console.error('Ошибка при получении статуса отслеживания:', error);
+        }
+    };
+
     const handleProductClick = (product) => {
-        setModalVisible(true)
+        setModalVisible(true);
         setSelectedProduct(product);
         fetchPriceData(product.id);
+        fetchTrackedStatus(product.id); // Получение статуса отслеживания
     };
 
     const handleSearch = () => {
@@ -73,7 +88,7 @@ const Main = () => {
 
     const handleModalClose = () => {
         setLoginModalOpen(false);
-        setModalVisible(false)
+        setModalVisible(false);
     };
 
     const onFinish = async (values) => {
@@ -89,6 +104,32 @@ const Main = () => {
             handleModalClose();
         } catch (error) {
             message.error(error.response?.data?.error || 'Произошла ошибка');
+        }
+    };
+
+    const handleTrackingChange = async (checked) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            message.error('Вы должны быть авторизованы для отслеживания товаров');
+            return;
+        }
+
+        try {
+            if (checked) {
+                await axios.post('https://pacific-commitment-production.up.railway.app/api/track-product', { productId: selectedProduct.id }, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                message.success('Товар добавлен в отслеживаемые');
+            } else {
+                await axios.post('https://pacific-commitment-production.up.railway.app/api/untrack-product', { productId: selectedProduct.id }, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                message.success('Товар удален из отслеживаемых');
+            }
+            setIsTracked(checked);
+        } catch (error) {
+            console.error('Ошибка при изменении статуса отслеживания:', error);
+            message.error('Ошибка при изменении статуса отслеживания');
         }
     };
 
@@ -233,6 +274,15 @@ const Main = () => {
                                 )}
                             </LineChart>
                         </ResponsiveContainer>
+                        {localStorage.getItem('token') && (
+                            <Checkbox
+                                checked={isTracked}
+                                onChange={(e) => handleTrackingChange(e.target.checked)}
+                                style={{ marginTop: '20px' }}
+                            >
+                                Отслеживать
+                            </Checkbox>
+                        )}
                     </Modal>
                 )}
             </div>
