@@ -112,26 +112,36 @@ app.get('/api/products/:id/prices', async (req, res) => {
 app.post('/api/register', async (req, res) => {
     const { email, password } = req.body;
 
+    console.log('Register request received with:', { email, password });
+
     if (!email || !password) {
+        console.error('Missing email or password');
         return res.status(400).json({ error: 'Все поля обязательны для заполнения' });
     }
 
     try {
         const connection = await connectDB();
+        console.log('Database connection established');
 
         const [userExists] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
 
+        console.log('User exists check:', userExists);
+
         if (userExists.length > 0) {
             await connection.end();
+            console.error('User already exists with email:', email);
             return res.status(409).json({ error: 'Пользователь с таким email уже существует' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log('Password hashed');
 
         await connection.execute(
             'INSERT INTO users (email, password) VALUES (?, ?)',
             [email, hashedPassword]
         );
+
+        console.log('User inserted into database');
 
         await connection.end();
         res.status(201).json({ message: 'Регистрация успешна' });
@@ -181,6 +191,8 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/google-login', async (req, res) => {
     const { token } = req.body;
 
+    console.log('Google login request received with token:', token);
+
     try {
         // Верификация токена
         const ticket = await client.verifyIdToken({
@@ -189,12 +201,17 @@ app.post('/api/google-login', async (req, res) => {
         });
         const payload = ticket.getPayload();
 
+        console.log('Google token verified. Payload:', payload);
+
         const { email, sub: googleId, name } = payload;
 
         const connection = await connectDB();
+        console.log('Database connection established');
 
         // Поиск пользователя в базе данных
         const [user] = await connection.execute('SELECT * FROM users WHERE google_id = ? OR email = ?', [googleId, email]);
+
+        console.log('User found in database:', user);
 
         let userId;
 
@@ -205,14 +222,17 @@ app.post('/api/google-login', async (req, res) => {
                 [name, email, googleId]
             );
             userId = result.insertId;
+            console.log('New user created with ID:', userId);
         } else {
             userId = user[0].id;
+            console.log('Existing user ID:', userId);
         }
 
         // Генерация JWT токена
         const jwtToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         await connection.end();
+        console.log('JWT token generated:', jwtToken);
 
         res.json({ token: jwtToken, message: 'Вход через Google успешен' });
     } catch (error) {
@@ -220,6 +240,7 @@ app.post('/api/google-login', async (req, res) => {
         res.status(500).json({ error: 'Ошибка при входе через Google' });
     }
 });
+
 
 // Добавление товара в отслеживаемые
 app.post('/api/track-product', async (req, res) => {
