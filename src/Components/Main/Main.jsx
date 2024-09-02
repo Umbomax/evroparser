@@ -158,7 +158,7 @@ const Main = ({ showTrackedProducts = false }) => {
 
     const handleGoogleLoginSuccess = async (credentialResponse) => {
         try {
-            const decodedToken = jwt_decode(credentialResponse.credential);
+            const decodedToken = jwtDecode(credentialResponse.credential);
             const userEmail = decodedToken.email;
     
             const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/google-login', {
