@@ -7,7 +7,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Header from '../Header/Header';
 import '../../App.css';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 const { Option } = Select;
 
