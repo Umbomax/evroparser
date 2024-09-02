@@ -158,24 +158,23 @@ const Main = ({ showTrackedProducts = false }) => {
 
     const handleGoogleLoginSuccess = async (credentialResponse) => {
         try {
-            
             const decodedToken = jwt_decode(credentialResponse.credential);
-    
             const userEmail = decodedToken.email;
-
+    
             const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/google-login', {
                 token: credentialResponse.credential
             });
     
             message.success(response.data.message);
             localStorage.setItem('token', response.data.token);
-            saveEmail(values.email)
+            saveEmail(userEmail);  
             handleModalClose();
         } catch (error) {
             console.error('Ошибка при входе через Google:', error);
             message.error('Ошибка при входе через Google');
         }
     };
+    
 
     return (
         <GoogleOAuthProvider clientId={googleClientId}>
@@ -273,20 +272,7 @@ const Main = ({ showTrackedProducts = false }) => {
                     </Form>
                     <div style={{ textAlign: 'center', margin: '20px 0' }}>или</div>
                     <GoogleLogin
-                        onSuccess={async (credentialResponse) => {
-                            try {
-                                const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/google-login', {
-                                    token: credentialResponse.credential
-                                });
-                                message.success(response.data.message);
-                                localStorage.setItem('token', response.data.token);
-                                handleModalClose();
-                                handleGoogleLoginSuccess()
-                            } catch (error) {
-                                console.error('Ошибка при входе через Google:', error);
-                                message.error('Ошибка при входе через Google');
-                            }
-                        }}
+                        onSuccess={handleGoogleLoginSuccess}
                         onError={() => {
                             console.log('Ошибка при входе через Google');
                         }}
