@@ -7,6 +7,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Header from '../Header/Header';
 import '../../App.css';
+import {jwt_decode} from 'jwt-decode';
 
 const { Option } = Select;
 
@@ -148,6 +149,27 @@ const Main = ({ showTrackedProducts = false }) => {
         }
     };
 
+    const handleGoogleLoginSuccess = async (credentialResponse) => {
+        try {
+            
+            const decodedToken = jwt_decode(credentialResponse.credential);
+    
+            const userEmail = decodedToken.email;
+
+            const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/google-login', {
+                token: credentialResponse.credential
+            });
+    
+            message.success(response.data.message);
+            localStorage.setItem('token', response.data.token);
+            setEmail(userEmail); 
+            handleModalClose();
+        } catch (error) {
+            console.error('Ошибка при входе через Google:', error);
+            message.error('Ошибка при входе через Google');
+        }
+    };
+
     return (
         <GoogleOAuthProvider clientId={googleClientId}>
             <div className="App">
@@ -252,6 +274,7 @@ const Main = ({ showTrackedProducts = false }) => {
                                 message.success(response.data.message);
                                 localStorage.setItem('token', response.data.token);
                                 handleModalClose();
+                                handleGoogleLoginSuccess()
                             } catch (error) {
                                 console.error('Ошибка при входе через Google:', error);
                                 message.error('Ошибка при входе через Google');

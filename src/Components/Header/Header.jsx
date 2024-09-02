@@ -23,6 +23,11 @@ const Header = ({ email, onLogin }) => {
     useEffect(() => {
         setIsLoggedIn(!!localStorage.getItem('token'));
     }, [localStorage.getItem('token')]);
+
+    useEffect(() => {
+        setIsLoggedIn(!!localStorage.getItem("token"));
+    }, [email]);
+
     return (
         <header className={classes.header}>
             <div className={classes.headerContent}>
