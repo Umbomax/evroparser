@@ -14,7 +14,7 @@ const { Option } = Select;
 const Main = ({ showTrackedProducts = false }) => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(localStorage.getItem('email') || '');;
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(15);
     const [total, setTotal] = useState(0);
@@ -60,6 +60,12 @@ const Main = ({ showTrackedProducts = false }) => {
         } catch (error) {
             console.error('Ошибка при получении данных о ценах:', error);
         }
+    };
+
+    const saveEmail = (email) => {
+        console.log(email)
+        localStorage.setItem('email', email);
+        setEmail(email);
     };
 
     const fetchTrackedStatus = async (productId) => {
@@ -115,6 +121,7 @@ const Main = ({ showTrackedProducts = false }) => {
                 const response = await axios.post('https://pacific-commitment-production.up.railway.app/api/login', values);
                 message.success(response.data.message);
                 localStorage.setItem('token', response.data.token);
+                saveEmail(values.email)
             }
             setEmail(values.email);
             handleModalClose();
@@ -162,7 +169,7 @@ const Main = ({ showTrackedProducts = false }) => {
     
             message.success(response.data.message);
             localStorage.setItem('token', response.data.token);
-            setEmail(userEmail); 
+            saveEmail(values.email)
             handleModalClose();
         } catch (error) {
             console.error('Ошибка при входе через Google:', error);
