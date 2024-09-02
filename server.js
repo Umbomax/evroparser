@@ -190,7 +190,6 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/google-login', async (req, res) => {
     const { token } = req.body;
-
     console.log('Google login request received with token:', token);
 
     try {
@@ -211,28 +210,26 @@ app.post('/api/google-login', async (req, res) => {
         // Поиск пользователя в базе данных
         const [user] = await connection.execute('SELECT * FROM users WHERE google_id = ? OR email = ?', [googleId, email]);
 
-        console.log('User found in database:', user);
-
         let userId;
 
         if (user.length === 0) {
-            // Если пользователя нет, создаем его
+            // Если пользователя нет, создаем его (убираем username)
             const [result] = await connection.execute(
-                'INSERT INTO users (username, email, google_id) VALUES (?, ?, ?)',
-                [name, email, googleId]
+                'INSERT INTO users (email, google_id) VALUES (?, ?)',
+                [email, googleId]
             );
             userId = result.insertId;
             console.log('New user created with ID:', userId);
         } else {
             userId = user[0].id;
-            console.log('Existing user ID:', userId);
+            console.log('Existing user found with ID:', userId);
         }
 
         // Генерация JWT токена
         const jwtToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        console.log('JWT token generated');
 
         await connection.end();
-        console.log('JWT token generated:', jwtToken);
 
         res.json({ token: jwtToken, message: 'Вход через Google успешен' });
     } catch (error) {
@@ -240,6 +237,7 @@ app.post('/api/google-login', async (req, res) => {
         res.status(500).json({ error: 'Ошибка при входе через Google' });
     }
 });
+
 
 
 // Добавление товара в отслеживаемые
